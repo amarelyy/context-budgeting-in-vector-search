@@ -1,0 +1,5 @@
+,recall_both,cov_conditional,tokens,in_pool,saved_vs_k20_pct
+global_conformal,0.7333,0.9322,1545.52,0.7867,41.4
+fixed_k12_cal,0.7733,0.9831,1549.28,0.7867,41.3
+fixed_k10,0.7067,0.8983,1278.1467,0.7867,51.5
+fixed_k20,0.7867,1.0,2637.8933,0.7867,0.0

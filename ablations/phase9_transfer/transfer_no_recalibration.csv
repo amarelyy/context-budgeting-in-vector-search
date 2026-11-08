@@ -1,0 +1,6 @@
+,cov_conditional,cov_unconditional,tokens,avg_chunks,saved_vs_k20_pct
+hotpot_global_tokens (q_hat 1649),0.8219,0.6767,1451.59,5.1933,76.5293
+hotpot_fixed_k12,0.9595,0.79,3709.2533,12.0,40.0252
+hotpot_cqr,0.8138,0.67,1220.6,4.3033,80.2641
+fixed_k5,0.8502,0.7,1553.2567,5.0,74.8854
+fixed_k20,1.0,0.8233,6184.6833,20.0,0.0

@@ -1,0 +1,5 @@
+threshold,pairs,chunks_dropped,dropped_share,fit_top20_lists_affected,calibration_top20_lists_affected,test_top20_lists_affected,gold_chunks_dropped
+0.9,109,62,0.0125,44,6,9,7
+0.95,51,28,0.0056,24,4,3,3
+0.98,21,11,0.0022,6,1,1,2
+0.99,20,10,0.002,6,1,1,2

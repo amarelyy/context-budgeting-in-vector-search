@@ -1,0 +1,4 @@
+method,cov_conditional,cov_p05,cov_unconditional,tokens,saved_vs_k20_pct,q_hat_median,k_median
+recal_conformal_k,0.913,0.84,0.7514,2510.7559,59.3948,2565.0,8.0
+recal_cqr,0.9043,0.8399,0.7442,2668.851,56.8223,2565.0,8.0
+recal_global_tokens,0.9055,0.8467,0.7452,2587.2647,58.1241,2565.0,8.0

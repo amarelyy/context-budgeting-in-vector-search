@@ -1,0 +1,6 @@
+stage,n,mean_f1,mean_tokens,mean_chunks,share
+1_retrieval_miss,17,0.273,1542.941,11.941,0.227
+2_budget_miss,4,0.375,1593.25,10.5,0.053
+3_llm_fail,14,0.0,1562.643,13.643,0.187
+4_partial,14,0.498,1502.857,11.0,0.187
+5_correct,26,1.0,1569.923,13.731,0.347
