@@ -8,7 +8,9 @@ import os
 
 from data_loader import load_raw
 
-TOKENIZER_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # starting value
+# Qwen2.5 tokenizer = the tokenizer of the answering LLM (all Qwen2.5 sizes share it).
+# Changed from all-MiniLM-L6-v2 on 2026-11-08 (decision 2.3: use an LLM).
+TOKENIZER_NAME = "Qwen/Qwen2.5-7B-Instruct"
 CHUNK_PATH = "data/processed/chunks.jsonl"
 GOLD_PATH = "data/processed/gold_chunk_ids.json"
 

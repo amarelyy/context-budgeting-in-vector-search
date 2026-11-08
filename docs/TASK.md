@@ -34,7 +34,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Phase 2: Fixed-k baseline (report this first)
 - [x] **2.1** `baseline.py`: retrieve with k = 5, 10, 20 for the test queries.
 - [x] **2.2** Compute `recall_at_k` (gold passages covered) and average `total_tokens` for each k.
-- [ ] **2.3** Decide whether to use an LLM for `answer_f1`. If yes, record which one and the prompt template. If no, note that only retrieval metrics are reported.
+- [~] **2.3** Decide whether to use an LLM for `answer_f1`. If yes, record which one and the prompt template. If no, note that only retrieval metrics are reported.
 - [ ] **2.4** Log the baseline table in `results/results.md`. **GATE:** the baseline must exist before Phase 5.
 
 ## Phase 3: Signals
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 2.3 (partial), 2.2 rerun | rr chose an LLM (local Qwen2.5 7B via Ollama). Switched `token_cost` to the Qwen2.5 tokenizer and reran chunking and baseline: same recall, tokens ~10% higher (k=20 mean 2634). Oracle moved to fit only (`notebooks/oracle_fit.py`): max saving 76.7% vs k=20. An earlier oracle run on test was deleted from the log. 2.3 still open: Ollama model tag and prompt template. Not committed: rr will commit. |
 | 2026-11-08 | 2.1-2.2 | Fixed-k baseline on test (75 queries). Both-gold recall k=5/10/20 = 0.560/0.693/0.773, any-gold = 0.947/0.960/0.973, mean total_tokens = 539/1153/2379. Logged in `results/results.md`. Note: CLAUDE.md says "don't touch test before Phase 7" but TASK 2.1 says baseline on test; followed TASK (fixed-k has nothing to tune). Not committed yet: rr will commit. |
 | 2026-11-08 | 1.4-1.7 | Embedded 4956 chunks with all-MiniLM-L6-v2 (dim 384, all norms 1.0), saved `chunk_embeddings.npy`. Built HNSW (M 32, efC 200, efS 100), saved `hnsw.index`. Sanity check on 3 fit queries: both gold at ranks 1-2 each time. Fit split: both gold in top 5/10/20 = 0.520/0.683/0.763. HNSW vs exact recall@20 on 350 fit queries = 0.9994 (min 0.95), top-1 identical 100%. 188 chunks are longer than the model's 256-token limit and are truncated. Checks in `notebooks/check_index.py` (fit queries only). |
 | 2026-11-08 | 1.1-1.3 | Downloaded HotpotQA (distractor, validation) via `datasets`. Sampled 500 queries (seed 42) to `data/raw/hotpot_subset.jsonl`. Splits 350/75/75 saved to `data/processed/splits.json`. Built 4956 chunks (one paragraph = one chunk, deduplicated by title+text) with `token_cost` (median 107, mean 119.7, max 1846; 593,478 tokens total). Every query has exactly 2 gold chunks. Saved `chunks.jsonl` and `gold_chunk_ids.json`. |
@@ -103,15 +104,21 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 |---|---|---|---|
 | 2026-11-08 | Embedding model | `sentence-transformers/all-MiniLM-L6-v2`, dim 384, L2-normalized (starting value) | Small, fast on CPU, same tokenizer as `token_cost`. Max 256 tokens: 188 of 4956 chunks are truncated. |
 | 2026-11-08 | Distance type | L2 distance on unit vectors = sqrt of FAISS squared L2, range [0, 2], smaller = closer | `margin_mc` and `var_local` use these distances. Note L2^2 = 2 - 2*cos. |
-| 2026-11-08 | Tokenizer for `token_cost` | `sentence-transformers/all-MiniLM-L6-v2` tokenizer (starting value) | Already installed, no new dependency. It is not an LLM tokenizer, so `token_cost` is a proxy for real LLM cost. Revisit if an LLM is chosen (2.3). |
+| 2026-11-08 | Tokenizer for `token_cost` | ~~all-MiniLM-L6-v2~~ → `Qwen/Qwen2.5-7B-Instruct` tokenizer | Changed after decision 2.3 (use an LLM): count tokens the way the answering LLM does. All Qwen2.5 sizes share this tokenizer. Chunks unchanged, so the embeddings and index stay valid. Corpus total 593,478 → 651,022 tokens. |
+| 2026-11-08 | Oracle upper bound | Computed on **fit only**, never on test | rr's rule. The oracle is the maximum possible result (76.7% max saving vs k=20 on fit). |
 | 2026-11-08 | Subset size | 500 queries, seed 42 (starting value) | Small enough to run fast on CPU. |
 | 2026-11-08 | Chunk definition | 1 paragraph = 1 chunk, one shared corpus for all queries | Simplest. HotpotQA gold is given per paragraph. Long paragraphs (max 1846 tokens) will be truncated by the embedding model in 1.4. |
-| | LLM for `answer_f1` (or none) | TBD | |
+| 2026-11-08 | LLM for `answer_f1` | **Qwen3-4B-Instruct-2507**, run locally with Ollama (native `/api/chat`, not `/v1`). Ollama tag `qwen3:4b-instruct-2507-q4_K_M`, ID `0edcdef34593`, 2.5 GB, Q4_K_M, 4.0B params, model context length 262144, Ollama 0.40.15 (checked 2026-11-08 with `ollama list` / `ollama show`). Modelfile defaults = Qwen's values (temperature 0.7, top_k 20, top_p 0.8, repeat_penalty 1), so temperature 0 must be passed explicitly. `ollama show` lists a "thinking" capability: check in Step 3 that no `<think>` block appears. `ollama ps`: model not loaded yet, CONTEXT to be confirmed in Step 3. num_ctx: set explicitly (not the default); value computed from real data later, starting value. Sampling: **two settings** (see the next row). num_predict: small (e.g. 256, starting value). Prompt template: TBD, saved in repo, same for every method. | Official Instruct version, non-thinking only (no `<think>` blocks), so answers are short and stable. 4B fits in 8 GB VRAM and runs fast for many reruns; the project is about retrieval budget, not LLM strength. Report wording: "chosen for speed and fit" (do NOT claim it beats 8B). Replaces the earlier Qwen2.5 7B plan. `recall_at_budget` = primary metric, `answer_f1` = secondary. |
 | 2026-11-08 | HNSW parameters (M, efConstruction, efSearch) | 32 / 200 / 100 (starting values) | Common defaults. Recall vs exact = 0.9994 on fit, so no tuning needed for now. |
+| 2026-11-08 | LLM sampling settings | **Main:** temperature 0, fixed seed (seed value TBD, starting value): used for every headline number and the baseline vs method comparison. **Secondary:** Qwen's values (temperature 0.7, top_p 0.8, top_k 20, min_p 0), several seeds (count TBD, starting value): used only for error analysis and run-to-run variance. Every setting passed explicitly in each call. Per-query logs saved as CSV in `results/`. | Princess's choice. Temperature 0 makes differences come from retrieval, not luck. Qwen's values show how stable `answer_f1` is and let us compare errors between the two. Never mix the two settings in one table. |
 | | top_m candidates per query | TBD | |
 | 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
 | | alpha, number of bins | TBD (starting: alpha 0.1) | |
 | | Multi-hop gold handling | TBD (baseline reports both "both gold" and "any gold" for now) | |
+
+## Reminders for Princess (remind every session until done)
+- [~] **Update README for the testing method** (draft written 2026-11-08, not committed; finalize after the LLM runs and the Qwen3 tokenizer switch): LLM (Qwen3-4B-Instruct-2507 via Ollama, "chosen for speed and fit"), the two sampling settings (temperature 0 main, Qwen's values for error analysis), `recall_at_budget` primary / `answer_f1` secondary, the per-query CSV logs in `results/`, the oracle upper bound (fit only). Do it after the LLM pipeline runs (after task 2.3 code).
+- [ ] Commit and push the pending changes.
 
 ## Open questions for rr
 - Which BEIR subset to use as the second dataset?

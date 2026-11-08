@@ -13,6 +13,23 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Oracle upper bound (FIT split only, NOT a method result)
+- Config: fit split (350 queries), top 20 candidates, token_cost tokenizer Qwen/Qwen2.5-7B-Instruct, other settings as the baseline. Oracle = stop exactly when the gold is covered (uses labels, impossible in practice). Rule: oracle is computed on fit only, never on test. Script: `notebooks/oracle_fit.py`.
+- Numbers: both gold in top 20 for 267 of 350 queries. Oracle tokens to cover both gold: mean 591.5, median 349.0. To cover first gold: mean 143.2, median 96.0. k=20 mean tokens (all fit queries) = 2558.4. **Maximum possible saving vs k=20 (both gold, same 267 queries) = 76.7%.**
+- Why it changed: replaces an earlier oracle computed on test (deleted by rr's rule; nothing was tuned from it).
+
+### 2026-11-08: Fixed-k baseline, rerun with Qwen tokenizer (test split)
+- Config: as the first baseline below, but token_cost tokenizer = Qwen/Qwen2.5-7B-Instruct (was all-MiniLM-L6-v2).
+- Numbers:
+
+| k | recall_at_k (both gold) | recall_at_k (any gold) | gold_frac | total_tokens mean | total_tokens median |
+|---|---|---|---|---|---|
+| 5 | 0.560 | 0.947 | 0.753 | 595.2 | 575.0 |
+| 10 | 0.693 | 0.960 | 0.827 | 1274.1 | 1261.0 |
+| 20 | 0.773 | 0.973 | 0.873 | 2634.0 | 2573.0 |
+
+- Why it changed: only the tokenizer changed (decision 2.3: use an LLM, so count tokens like the LLM does). Recall is identical (same retrieval); tokens are about 10% higher because Qwen splits text into more tokens. **This is the baseline to use from now on.**
+
 ### 2026-11-08: Fixed-k baseline (Phase 2, test split)
 - Config: HotpotQA distractor validation, 500 queries, seed 42, split 350/75/75, **test split (75 queries)** / all-MiniLM-L6-v2, L2-normalized / HNSW M 32, efConstruction 200, efSearch 100 / 4956 chunks / token_cost tokenizer: all-MiniLM-L6-v2 / k = 5, 10, 20
 - Numbers:

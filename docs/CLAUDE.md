@@ -25,7 +25,8 @@ Owner: rr, 3nd-year Information Engineering student Built for CV and research in
 - Do not claim something works until the matching check in `TASK.md` has real output.
 
 ## 3. Experiment rules
-- Three splits: **fit / calibration / test**. Fixed random seed. Save the query IDs. **Never touch the test split** until Phase 7 and later.
+- Three splits: **fit / calibration / test**. Fixed random seed. Save the query IDs. **Never tune anything on the test split.** The test split is used for the fixed-k baseline (Phase 2, nothing to tune) and from Phase 7 onward. Thresholds, alpha, bins and models are chosen on fit/calibration only. The **oracle** (upper bound) is computed on fit only, never on test.
+- Never change rr's Ollama models (no pull/rm/create). rr manages them. Read-only checks (`ollama list`) are fine.
 - Report the **fixed-k baseline first**, then the adaptive method, on the **same queries**.
 - Only **one** of the five base components may be swapped (the gate, component 2). Do not add other swaps.
 - Log every result in `results/results.md`: date, config (k, alpha, bins, seed, split), the numbers, and a one-line "why did it change".
