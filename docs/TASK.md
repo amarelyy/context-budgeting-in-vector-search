@@ -23,9 +23,9 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **0.7** Create `results/results.md` with a header and the log format (date, config, numbers, why it changed)
 
 ## Phase 1: Data and index
-- [ ] **1.1** `data_loader.py`: load a small HotpotQA subset with gold supporting facts (start with a few hundred queries, a starting value). Print one example to check.
-- [ ] **1.2** Make the fit / calibration / test splits with a fixed seed. Save query IDs to `data/processed/`. (Split ratio is a starting value to decide.)
-- [ ] **1.3** `chunking.py`: build chunks from the passages and compute `token_cost`. Record the tokenizer in the Decisions Log.
+- [x] **1.1** `data_loader.py`: load a small HotpotQA subset with gold supporting facts (start with a few hundred queries, a starting value). Print one example to check.
+- [x] **1.2** Make the fit / calibration / test splits with a fixed seed. Save query IDs to `data/processed/`. (Split ratio is a starting value to decide.)
+- [x] **1.3** `chunking.py`: build chunks from the passages and compute `token_cost`. Record the tokenizer in the Decisions Log.
 - [ ] **1.4** Embed the chunks and L2-normalize. Record the embedding model in the Decisions Log. Save to `data/processed/`.
 - [ ] **1.5** `index.py`: build the FAISS HNSW index and write a `search(query, top_m)` that returns chunk IDs and distances. Record the HNSW parameters.
 - [ ] **1.6** Sanity check: run a few queries by hand, confirm results look sensible. Record the distance type (L2 or inner product).
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 1.1-1.3 | Downloaded HotpotQA (distractor, validation) via `datasets`. Sampled 500 queries (seed 42) to `data/raw/hotpot_subset.jsonl`. Splits 350/75/75 saved to `data/processed/splits.json`. Built 4956 chunks (one paragraph = one chunk, deduplicated by title+text) with `token_cost` (median 107, mean 119.7, max 1846; 593,478 tokens total). Every query has exactly 2 gold chunks. Saved `chunks.jsonl` and `gold_chunk_ids.json`. |
 | 2026-11-08 | 0.5-0.7 | Created `.venv` (Python 3.11.9), installed the 7 proposed packages (all import OK), pinned versions in `requirements.txt`. Wrote README skeleton and `results/results.md`. Phase 0 done pending push. |
 | 2026-11-08 | 0.1-0.3 | Repo cloned, folder structure created and pushed. Project files written. |
 
@@ -99,11 +100,13 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 | Date | Decision | Value chosen | Why |
 |---|---|---|---|
 | | Embedding model | TBD | |
-| | Tokenizer for `token_cost` | TBD | |
+| 2026-11-08 | Tokenizer for `token_cost` | `sentence-transformers/all-MiniLM-L6-v2` tokenizer (starting value) | Already installed, no new dependency. It is not an LLM tokenizer, so `token_cost` is a proxy for real LLM cost. Revisit if an LLM is chosen (2.3). |
+| 2026-11-08 | Subset size | 500 queries, seed 42 (starting value) | Small enough to run fast on CPU. |
+| 2026-11-08 | Chunk definition | 1 paragraph = 1 chunk, one shared corpus for all queries | Simplest. HotpotQA gold is given per paragraph. Long paragraphs (max 1846 tokens) will be truncated by the embedding model in 1.4. |
 | | LLM for `answer_f1` (or none) | TBD | |
 | | HNSW parameters (M, efConstruction, efSearch) | TBD | |
 | | top_m candidates per query | TBD | |
-| | Split ratio (fit / calibration / test) | TBD | |
+| 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
 | | alpha, number of bins | TBD (starting: alpha 0.1) | |
 | | Multi-hop gold handling | TBD | |
 
