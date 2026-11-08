@@ -32,8 +32,8 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **1.7** Check index recall against exact search on a small sample (see Risk 5 in `CONTEXT.md`).
 
 ## Phase 2: Fixed-k baseline (report this first)
-- [ ] **2.1** `baseline.py`: retrieve with k = 5, 10, 20 for the test queries.
-- [ ] **2.2** Compute `recall_at_k` (gold passages covered) and average `total_tokens` for each k.
+- [x] **2.1** `baseline.py`: retrieve with k = 5, 10, 20 for the test queries.
+- [x] **2.2** Compute `recall_at_k` (gold passages covered) and average `total_tokens` for each k.
 - [ ] **2.3** Decide whether to use an LLM for `answer_f1`. If yes, record which one and the prompt template. If no, note that only retrieval metrics are reported.
 - [ ] **2.4** Log the baseline table in `results/results.md`. **GATE:** the baseline must exist before Phase 5.
 
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 2.1-2.2 | Fixed-k baseline on test (75 queries). Both-gold recall k=5/10/20 = 0.560/0.693/0.773, any-gold = 0.947/0.960/0.973, mean total_tokens = 539/1153/2379. Logged in `results/results.md`. Note: CLAUDE.md says "don't touch test before Phase 7" but TASK 2.1 says baseline on test; followed TASK (fixed-k has nothing to tune). Not committed yet: rr will commit. |
 | 2026-11-08 | 1.4-1.7 | Embedded 4956 chunks with all-MiniLM-L6-v2 (dim 384, all norms 1.0), saved `chunk_embeddings.npy`. Built HNSW (M 32, efC 200, efS 100), saved `hnsw.index`. Sanity check on 3 fit queries: both gold at ranks 1-2 each time. Fit split: both gold in top 5/10/20 = 0.520/0.683/0.763. HNSW vs exact recall@20 on 350 fit queries = 0.9994 (min 0.95), top-1 identical 100%. 188 chunks are longer than the model's 256-token limit and are truncated. Checks in `notebooks/check_index.py` (fit queries only). |
 | 2026-11-08 | 1.1-1.3 | Downloaded HotpotQA (distractor, validation) via `datasets`. Sampled 500 queries (seed 42) to `data/raw/hotpot_subset.jsonl`. Splits 350/75/75 saved to `data/processed/splits.json`. Built 4956 chunks (one paragraph = one chunk, deduplicated by title+text) with `token_cost` (median 107, mean 119.7, max 1846; 593,478 tokens total). Every query has exactly 2 gold chunks. Saved `chunks.jsonl` and `gold_chunk_ids.json`. |
 | 2026-11-08 | 0.5-0.7 | Created `.venv` (Python 3.11.9), installed the 7 proposed packages (all import OK), pinned versions in `requirements.txt`. Wrote README skeleton and `results/results.md`. Phase 0 done pending push. |
@@ -110,7 +111,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 | | top_m candidates per query | TBD | |
 | 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
 | | alpha, number of bins | TBD (starting: alpha 0.1) | |
-| | Multi-hop gold handling | TBD | |
+| | Multi-hop gold handling | TBD (baseline reports both "both gold" and "any gold" for now) | |
 
 ## Open questions for rr
 - Which BEIR subset to use as the second dataset?
