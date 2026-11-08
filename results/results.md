@@ -13,6 +13,11 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Conformal budget per bin (Phase 6) + dev estimate (no test)
+- Config: alpha 0.1, method A, 3 bins (edges = fit conf_score tertiles 0.3423 / 0.4191). Dev estimate: 425 fit+calibration queries, out-of-fold scores, 500 re-splits (75 / 350). Files: `data/processed/conformal.json`, `ablations/phase6_mondrian/`. Details: `results/runs/17_conformal_mondrian.md`.
+- Numbers: real calibration q_hat global 1,649; bins 2,097 / 1,731 / 950. In-sample coverage 0.965 (bins) vs 0.930 (global). Dev estimate: tokens fed global 1,399 (45.1% saved), 2 bins 1,507 (40.9%), 3 bins 1,614 (36.7%); conditional coverage 0.908 / 0.914 / 0.923. Fixed k=12: 0.929, 1,486 tokens.
+- Why it changed: first per-bin budget. Negative result: bins cost tokens (small-sample penalty per bin + weak score).
+
 ### 2026-11-08: Score model (Phase 5, fit only)
 - Config: target y = gold_pos_tokens ≤ T, T = 349 (fit median), uncoverable → 0. Logistic regression, StandardScaler, C = 1.0. 5-fold stratified CV on fit, 5 split seeds. Details: `results/runs/16_score_model.md`.
 - Numbers: CV AUROC all 5 signals 0.589 ± 0.010; rival top1_dist 0.460 ± 0.031; margin_mc alone 0.555. conf_score on fit 0.155-0.690 (median 0.381).

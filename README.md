@@ -16,7 +16,8 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 | 3 | Confidence signals: code, unit test, saved for all splits, histograms | done |
 | 4 | Labels (`gold_pos_tokens`, both-gold rule) | done |
 | 5 | Score model (`conf_score`, logistic regression) | done (judged on fit only) |
-| 6-7 | Conformal budget per `conf_score` bin, token-budget retrieval | not started (a coverage/alpha ablation is done) |
+| 6 | Conformal budget per `conf_score` bin (Mondrian) | done; dev estimate shows no gain yet (see finding 8) |
+| 7 | Token-budget retrieval on test | not started (paused for a decision) |
 | 8 | The four checks | not started |
 | 9-10 | Ablation, failure analysis, dedup, wrap-up | not started |
 
@@ -30,6 +31,8 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 6. **A single global token budget is no better than fixed-k.** In a Phase 6 ablation on fit + calibration only, a conformal global budget (alpha 0.1) reached 0.908 conditional coverage with 1,399 tokens, while fixed k = 11 reached 0.920 with 1,355. Counting tokens instead of chunks does not help by itself; any gain must come from per-query budgets driven by the signals. See [ablations/phase6_coverage/REPORT.md](ablations/phase6_coverage/REPORT.md).
 
 7. **The signals only weakly predict which queries are easy.** A logistic regression on all five signals reaches a cross-validated AUROC of 0.589 on fit (0.5 = coin flip), above the `top1_dist`-only rival (0.460). The model gives `margin_mc` a negative weight, which matches finding 4.
+
+8. **Negative result: per-bin budgets do not save tokens yet.** On dev data (fit + calibration, 500 re-splits, no test), the global budget feeds 1,399 tokens, 2 bins 1,507 and 3 bins 1,614, all at ~0.91-0.92 conditional coverage. Each small bin pays its own finite-sample penalty, and the weak score cannot make up for it. See [ablations/phase6_mondrian/REPORT.md](ablations/phase6_mondrian/REPORT.md).
 
 Detailed notes for every run: [results/runs/](results/runs/README.md).
 
@@ -180,4 +183,6 @@ python src\llm_baseline.py qwen 1 2 3   # LLM baseline, Qwen's values, 3 seeds (
 python src\labels.py                    # labels: gold_pos_tokens (both-gold rule)
 python ablations\phase6_coverage\run_ablation.py  # Phase 6 ablation (fit + calibration only)
 python src\score_model.py               # conf_score (logistic regression, CV on fit)
+python src\conformal.py                 # q_hat global + per bin (calibration)
+python ablations\phase6_mondrian\run_mondrian.py  # dev estimate: bins vs global vs fixed-k (no test)
 ```

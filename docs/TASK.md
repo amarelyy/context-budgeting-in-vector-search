@@ -54,9 +54,9 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **5.3** Produce `conf_score` for all splits and save.
 
 ## Phase 6: Conformal budget
-- [ ] **6.1** `conformal.py`: compute `q_hat` on the **calibration** split with the finite-sample correction (alpha = 0.1, a starting value).
-- [ ] **6.2** Make bins of `conf_score` (number of bins is a starting value) and one `q_hat` per bin.
-- [ ] **6.3** Sanity check: coverage on the calibration split itself.
+- [x] **6.1** `conformal.py`: compute `q_hat` on the **calibration** split with the finite-sample correction (alpha = 0.1, a starting value).
+- [x] **6.2** Make bins of `conf_score` (number of bins is a starting value) and one `q_hat` per bin.
+- [x] **6.3** Sanity check: coverage on the calibration split itself.
 
 ## Phase 7: Token-budget retrieval
 - [ ] **7.1** `budget_retrieval.py`: for each query, get `conf_score` -> bin -> `q_hat`, then add chunks in ranked order until the token budget is full. (Starting approach. A value-per-cost variant can be tried later.)
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 6.1-6.3 + dev estimate | `src/conformal.py`: 3 bins (edges from fit tertiles), q_hat global 1,649, bins 2,097 / 1,731 / 950 (coverable n 17 / 20 / 20). In-sample coverage 0.965 vs 0.930 global. Dev estimate (`ablations/phase6_mondrian/`, no test, out-of-fold scores, 500 re-splits): global 1,399 tokens / 45.1% saved, 2 bins 1,507 / 40.9%, 3 bins 1,614 / 36.7%; fixed k=12 0.929 / 1,486. **Negative: bins cost tokens.** Cause: per-bin finite-sample penalty with ~14-24 coverable per bin + weak score (AUROC 0.59). STOP before Phase 7 and discuss options (more data / CQR / stronger signal). Not committed. |
 | 2026-11-08 | 5.1-5.3 | `src/score_model.py`. CV AUROC on fit: all 5 signals 0.589 ± 0.010, rival top1_dist 0.460 ± 0.031 (no usable information), margin_mc alone 0.555. Coefficient of margin_mc is negative (−0.852): larger margin → less likely easy (multi-hop effect, run 08). conf_score on fit spans only 0.155-0.690. Saved `conf_scores.csv`, models, meta. Weak but above 0.5 and above the rival; the formal check is 8.1 on test. Not committed. |
 | 2026-11-08 | preview (fit only) | Signals vs tokens needed on fit: Spearman with gold_pos_tokens all |ρ| ≤ 0.08. Single-signal AUROC: gold_in_pool best margin_mc 0.67 / elbow_idx 0.64; "both gold in top 2" best 0.58. Warning: check 1 (8.1) may fail with distance-only signals. Run note 15. Not committed. |
 | 2026-11-08 | 6 (ablation, early) | `ablations/phase6_coverage/`: A (conditional) vs C (infinite) × alpha 0.05-0.50, fit + calibration only, 500 re-splits, one global budget. A at alpha 0.1: cond. coverage 0.908, saves 45.1%. C at alpha ≤ 0.2: q_hat = ∞, saves ~0%. Key finding: a global token budget ≈ fixed-k at equal coverage (A 0.1: 0.908 / 1,399 tokens vs k=11: 0.920 / 1,355), so the signals must do the work. Bug (`inf <= inf`) found and fixed before reporting. Phase 6 tasks themselves not started (need Phase 5). Not committed. |
@@ -127,6 +128,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 | 2026-11-08 | top_m candidates per query | 20 (starting value) | Same pool as k=20 and the oracle. `var_local` and `entropy` use all 20; `margin_mc` uses ranks 1-2. |
 | 2026-11-08 | Signal definitions | `var_local` = population variance (1/m) of the top_m distances. `elbow_idx` = number of chunks before the biggest jump between neighbouring distances (1-based). `entropy` = entropy of softmax(-d / tau) divided by log(m), so it is in [0, 1]; tau = 0.1 (starting value) | tau = 1 would make the softmax almost flat (distances only span ~0.4-1.1), so entropy would be ~1 for every query. Check the histogram in 3.4. |
 | 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
+| 2026-11-08 | Number of bins, bin edges (6.2) | 3 bins (starting value); edges = equal-count tertiles of `conf_score` on **fit** (0.3423, 0.4191) | Fewer bins keep ~20 coverable calibration queries per bin. Dev estimate shows 1 bin (global) is cheaper than 2 or 3 with the current data. |
 | 2026-11-08 | alpha, coverage mode | **alpha = 0.1, method A (conditional coverage)**; unconditional coverage always reported next to the 0.762 ceiling. Number of bins: TBD (Phase 6). | Princess's choice after the Phase 6 ablation (`ablations/phase6_coverage/`). Full alpha curve reported in 9.2. Decided before any test result. |
 | 2026-11-08 | Score model target (5.1) | y = 1 if both gold covered within **T = 349 tokens** (median `gold_pos_tokens` of coverable fit queries), else 0; uncoverable → 0. Fit positives 134 / 350 (0.383). (starting value) | `conf_score` = "chance this query is easy". T sensitivity on fit: p25 → AUROC 0.616, p50 → 0.609, p75 → 0.644; target gold_in_pool → 0.699. Kept the median as decided beforehand. |
 | 2026-11-08 | Score model (5.1-5.2) | Logistic regression, StandardScaler, L2, C = 1.0, max_iter 1000. Rival: same on `top1_dist` only. Judged by 5-fold stratified CV on fit (5 split seeds). | Simplest model. Signals are correlated (run 08), so coefficients are not interpreted one by one. |
@@ -138,6 +140,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [ ] Commit and push the pending changes.
 
 ## Open questions for rr
+- **(Before Phase 7) The per-bin budget loses to the global budget and fixed-k on dev data.** Options: (1) more data: larger HotpotQA subset, e.g. 2,000 queries → ~300 calibration; (2) conformalized quantile regression instead of bins; (3) a stronger signal (question type). Claude's suggestion: 1 first, then 2. See `ablations/phase6_mondrian/REPORT.md`.
 - **(Phase 6) Coverage target when 24% of queries can never be covered.** Options: (A) conditional coverage: calibrate `q_hat` on coverable queries only, guarantee "if both gold are in the top 20, they are inside the budget with probability ≥ 1 − alpha", and also report unconditional coverage next to the 76% ceiling; (B) unconditional coverage with a larger alpha (≥ 0.25); (C) keep uncoverable queries as "infinite", so `q_hat` becomes the full k = 20 pool in bins with many of them. Claude's suggestion: A. **Ablation done** (`ablations/phase6_coverage/REPORT.md`): C gives 0% savings at alpha ≤ 0.2; A at alpha 0.1 hits 0.908 conditional coverage and saves 45%. Still suggest A with alpha 0.1, plus the global budget as a Phase 7 baseline. Waiting for Princess.
 - Which BEIR subset to use as the second dataset?
 - Is an LLM available for answer quality, or is the project retrieval-only at first?

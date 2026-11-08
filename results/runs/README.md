@@ -35,6 +35,7 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 14 | 2026-11-08 | 6 (ablation) | [Phase 6 coverage ablation](14_phase6_coverage_ablation.md) | done (fit + calibration only) |
 | 15 | 2026-11-08 | (preview) | [Signal preview: do signals predict tokens needed?](15_signal_preview_fit.md) | done (fit only) |
 | 16 | 2026-11-08 | 5.1-5.3 | [Score model](16_score_model.md) | done (judged on fit only) |
+| 17 | 2026-11-08 | 6.1-6.3 | [Conformal budget per bin + dev estimate](17_conformal_mondrian.md) | done; **negative result** |
 
 ## Biggest lessons so far
 
@@ -49,3 +50,4 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 9. **A single global token budget is no better than fixed-k** at equal coverage. Any efficiency gain must come from the per-query signals (run 14).
 10. **Warning: the signals barely predict how many tokens a query needs** (|Spearman| ≤ 0.08 on fit; best single-signal AUROC 0.58 for "easy" queries). Check 1 (8.1) may fail (run 15).
 11. **The combined score is weak but real.** CV AUROC 0.589 on fit, above the `top1_dist` rival (0.460). The model learned a negative weight on `margin_mc` by itself (run 16).
+12. **Per-bin budgets cost tokens instead of saving them** (global 1,399 → 3 bins 1,614 tokens on dev data). Each small bin pays its own finite-sample penalty, and the weak score cannot make up for it. The planned method does not beat fixed-k yet (run 17).
