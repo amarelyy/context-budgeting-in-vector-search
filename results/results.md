@@ -13,6 +13,11 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: The four checks on TEST (Phase 8)
+- Config: test (75); conf_score = 5-signal logistic model (T = 349); main method = global conformal budget q_hat 1,649, alpha 0.1, method A; bootstrap 95% CIs (2,000 resamples, seed 0); ECE 5 bins; LLM main setting for fixed k = 11, 12 added. Files: `results/phase8_checks.json`, `results/plots/reliability_test.png`, `results/llm_fixed_k_11_12_test_main_seed42.csv`. Details: `results/runs/21_four_checks_test.md`.
+- Numbers: auroc 0.677 [0.535, 0.806] vs top1_dist 0.623 [0.488, 0.757], diff CI [−0.112, +0.217]. ece 0.038 [0.018, 0.147]. coverage (conditional) 0.931 [0.862, 0.983], unconditional 0.720 (ceiling 0.773). tokens_saved_pct at equal recall vs fixed-k: global −9.8%, bins3 −7.3%, CQR −1.9%; vs k=20: 41.1%. answer_f1: global 0.521, fixed k=12 0.537, paired diff −0.016 [−0.058, +0.021].
+- Why it changed: first run of the four checks. Check 4 fails.
+
 ### 2026-11-08: Token-budget retrieval on TEST (Phase 7)
 - Config: test split (75), pre-declared main = global conformal budget q_hat 1,649 (alpha 0.1, method A); secondary bins3 and CQR (5 signals). LLM main setting (temp 0, seed 42, num_ctx 5120). Added after the run: fixed-k with k chosen on calibration by conformal on gold_pos_rank (k = 12). Files: `results/budget_test_main_seed42.csv`, `results/fixed_k_curve_test.csv`. Details: `results/runs/20_budget_retrieval_test.md`.
 - Numbers:

@@ -1,0 +1,153 @@
+query_id,k,truncated,gold_covered_both,answer,gold_answer,em,f1
+5a8555ea5542992a431d1b07,11,False,True,W.E.,The Big Lebowski,0.0,0.0
+5ade51515542992fa25da745,11,False,True,He flew to Scotland to negotiate peace.,report Hess's illegal May 1941 flight to Scotland,0.0,0.2667
+5ae7eb43554299540e5a5695,11,False,False,Texas's 27th congressional district,Texas's 27th congressional district,1.0,1.0
+5ac4f9db55429924173fb532,11,False,True,genera,genus,0.0,0.0
+5abdce1b5542993062266cfe,11,False,True,Hennepin,Hennepin County,0.0,0.6667
+5a80ddc555429938b6142224,11,False,True,Stephen Sondheim,Stephen Sondheim,1.0,1.0
+5a8753d95542994846c1cd63,11,False,True,No,yes,0.0,0.0
+5ae226755542996483e64906,11,False,True,LNW-80,LNW-80,1.0,1.0
+5a88fc4255429938390d4019,11,False,False,No date provided in passages.,"September 25, 2017",0.0,0.0
+5ab5ac345542992aa134a37f,11,False,True,"Frederick I, Elector of Saxony and his brother William II, Margrave of Meissen","Frederick I, Elector of Saxony",0.0,0.5556
+5a8cee9b554299441c6b9f87,11,False,True,Hotpoint,GE Appliances,0.0,0.0
+5a7cb8bc554299452d57b9be,11,False,True,"27,000","27,000",1.0,1.0
+5ab5e024554299494045f097,11,False,False,yes,yes,1.0,1.0
+5a728b1c5542992359bc30e0,11,False,False,Jonghyun,Jonghyun,1.0,1.0
+5ae0d52e554299603e418469,11,False,False,Barbara Niven,Douglas Jackson,0.0,0.0
+5ab29b07554299194fa93440,11,False,True,Baltimore,"Columbia, Maryland",0.0,0.0
+5a8ed10b5542995085b374a0,11,False,False,The Visit,The Visit,1.0,1.0
+5ae0120155429925eb1afbfb,11,False,False,no,"My Boss, My Hero",0.0,0.0
+5ae1faf15542997f29b3c1e3,11,False,True,1919,1919,1.0,1.0
+5ae3006c55429928c423959f,11,False,True,"Saint Michael, Barbados","Saint Michael, Barbados",1.0,1.0
+5a8d841955429941ae14dfe6,11,False,True,Eve Hewson,Eve Hewson,1.0,1.0
+5a7a112a5542990783324e2b,11,False,True,Mark Gaudet: indie/metal; Jan Axel Blomberg: heavy metal drummer,drummer,0.0,0.2
+5ac009bf5542997d642959a7,11,False,True,"No answer. The University in Pullman, Washington is not named after anyone.",Edward R. Murrow,0.0,0.0
+5ab5c263554299488d4d9a18,11,False,True,Belarus,Belarus,1.0,1.0
+5ae71f06554299572ea54708,11,False,True,Ferdinand Magellan,Ferdinand Magellan,1.0,1.0
+5a7a77425542995eb53be83e,11,False,True,Nick Carter,Brady Seals,0.0,0.0
+5abe4a365542993f32c2a0dc,11,False,False,no,more than 120 countries,0.0,0.0
+5a82bc7455429940e5e1a926,11,False,False,no,"""Red Rock West""",0.0,0.0
+5ae528ed5542993aec5ec16e,11,False,True,Revengers Tragedy,Revengers Tragedy,1.0,1.0
+5ae28058554299495565da90,11,False,False,1973,1958,0.0,0.0
+5a7e618155429949594199b0,11,False,True,Albany,Albany,1.0,1.0
+5a807ceb554299485f598616,11,False,True,Steve Coogan,Stephen John Coogan,0.0,0.4
+5ae143ed55429920d5234360,11,False,True,1755,1755,1.0,1.0
+5a81711455429938b614233e,11,False,True,Yes,yes,1.0,1.0
+5ab741005542992aa3b8c800,11,False,True,Bobby Hurley,Robert Matthew Hurley,0.0,0.4
+5a7351785542994cef4bc539,11,False,False,On film.,erotic thriller film,0.0,0.4
+5a87c13f5542996e4f30890c,11,False,False,New York,Rome,0.0,0.0
+5ae2133e554299495565d9e3,11,False,True,Jenn Brown,Kristine Leahy,0.0,0.0
+5ae152a65542990adbacf74f,11,False,True,"September 18, 2010","September 18, 2010",1.0,1.0
+5a82d71555429966c78a6a94,11,False,True,Yes,yes,1.0,1.0
+5ac083b0554299294b21900d,11,False,True,mixed drink,cocktail,0.0,0.0
+5a8f0796554299458435d528,11,False,True,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0
+5a75e62f5542992d0ec06013,11,False,True,Tropicana Casino & Resort,Tropicana Casino & Resort,1.0,1.0
+5a87106555429960ec39b71f,11,False,True,Rob Reiner,Rob Reiner,1.0,1.0
+5a7dbc175542995ed0d1666b,11,False,True,Anatoly Lunacharsky,Anatoly Vasilyevich Lunacharsky,0.0,0.8
+5a7e42df5542994959419954,11,False,False,Ghana national football team,Ghanaian national team,0.0,0.5714
+5ac0dcf25542996f0d89cc2c,11,False,True,Jane Mayer,Jane Mayer,1.0,1.0
+5a74adb455429916b01641c6,11,False,True,The first publication of The Ladder occurred first.,The Ladder,0.0,0.2857
+5a7c6d98554299683c1c6304,11,False,True,No series,Agent Carter,0.0,0.0
+5ab3a83d5542992ade7c6e08,11,False,False,The Daily Stormer,The Daily Stormer,1.0,1.0
+5ab31864554299233954ff06,11,False,True,Sarod,strings,0.0,0.0
+5ae1d4e8554299234fd04312,11,False,True,Rob Sitch,"Robert Ian ""Rob"" Sitch",0.0,0.6667
+5ac2cb09554299657fa29066,11,False,False,No team mentioned in passages that Travis Cortez Mays played on competes in the Big 12 Conference.,Texas Longhorns men's basketball team,0.0,0.0952
+5a8a231a55429930ff3c0cb4,11,False,False,"Manitoba is bordered by North Dakota and Minnesota.  
+Answer: North Dakota, Minnesota",North Dakota and Minnesota,0.0,0.5
+5ae37e525542992e3233c42d,11,False,True,117 to 138 AD,24 January 76 – 10 July 138,0.0,0.1818
+5ab5ec0a5542997d4ad1f250,11,False,True,No information provided about BJ's Wholesale Club locations as of early 2008.,650 locations,0.0,0.1429
+5a86769c5542994775f60776,11,False,True,Slaughterhouse-Five,Slaughterhouse-Five,1.0,1.0
+5ae497f15542995ad6573db8,11,False,False,none,Distillery,0.0,0.0
+5ab9ddef5542994dbf019875,11,False,True,Yes,yes,1.0,1.0
+5a7fc8d05542992e7d278d86,11,False,True,"Iceal ""Gene"" Hambleton","Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.6667
+5ae1d0e8554299234fd0430a,11,False,True,Guthred,Guthred or Guthfrith,0.0,0.5
+5ab5d6155542997d4ad1f1fa,11,False,False,No,Deep Purple,0.0,0.0
+5ab90d2755429916710eb0f0,11,False,False,No information provided about the creator of the series. Answer: no,Christopher McCulloch,0.0,0.0
+5a7557d75542992d0ec05f68,11,False,True,Laurie Metcalf,Laurie Metcalf,1.0,1.0
+5abe3dc65542993f32c2a0c4,11,False,True,11,8,0.0,0.0
+5ab207f65542993be8fa98b8,11,False,True,Preston,Preston,1.0,1.0
+5ab3c7df55429969a97a81be,11,False,True,Shijiazhuang,Shijiazhuang,1.0,1.0
+5a7e37095542995ed0d166d5,11,False,True,Sinclair Hill,Sinclair Hill,1.0,1.0
+5a7aa0a55542990198eaf165,11,False,True,Jacques Feyder,Jacques Feyder,1.0,1.0
+5abe765a55429976d4830b1f,11,False,True,No,Amélie Simone Mauresmo,0.0,0.0
+5a8810485542997e5c09a590,11,False,False,No information provided about passengers at Rotterdam The Hague Airport in 2016.,1.6 million passengers,0.0,0.1429
+5a7f1d3c5542993067513639,11,False,True,Mercuria,Mercuria Energy Group Ltd,0.0,0.4
+5ab2659e554299340b5254b2,11,False,False,Sasanian Empire,the Parthian Empire,0.0,0.5
+5a7b1023554299042af8f6c2,11,False,True,The Many Adventures of Winnie the Pooh,Ride a Wild Pony,0.0,0.0
+5a777ca855429949eeb29e6a,11,False,True,Disney,Walt Disney,0.0,0.6667
+5a8555ea5542992a431d1b07,12,False,True,W.E.,The Big Lebowski,0.0,0.0
+5ade51515542992fa25da745,12,False,True,He flew to Scotland to negotiate peace.,report Hess's illegal May 1941 flight to Scotland,0.0,0.2667
+5ae7eb43554299540e5a5695,12,False,True,Texas's 27th congressional district,Texas's 27th congressional district,1.0,1.0
+5ac4f9db55429924173fb532,12,False,True,genera,genus,0.0,0.0
+5abdce1b5542993062266cfe,12,False,True,Hennepin,Hennepin County,0.0,0.6667
+5a80ddc555429938b6142224,12,False,True,Stephen Sondheim,Stephen Sondheim,1.0,1.0
+5a8753d95542994846c1cd63,12,False,True,No,yes,0.0,0.0
+5ae226755542996483e64906,12,False,True,LNW-80,LNW-80,1.0,1.0
+5a88fc4255429938390d4019,12,False,False,No,"September 25, 2017",0.0,0.0
+5ab5ac345542992aa134a37f,12,False,True,"Frederick I, Elector of Saxony","Frederick I, Elector of Saxony",1.0,1.0
+5a8cee9b554299441c6b9f87,12,False,True,Hotpoint,GE Appliances,0.0,0.0
+5a7cb8bc554299452d57b9be,12,False,True,"27,000","27,000",1.0,1.0
+5ab5e024554299494045f097,12,False,False,Yes,yes,1.0,1.0
+5a728b1c5542992359bc30e0,12,False,False,Jonghyun,Jonghyun,1.0,1.0
+5ae0d52e554299603e418469,12,False,False,Barbara Niven,Douglas Jackson,0.0,0.0
+5ab29b07554299194fa93440,12,False,True,Baltimore,"Columbia, Maryland",0.0,0.0
+5a8ed10b5542995085b374a0,12,False,True,The Visit,The Visit,1.0,1.0
+5ae0120155429925eb1afbfb,12,False,False,no,"My Boss, My Hero",0.0,0.0
+5ae1faf15542997f29b3c1e3,12,False,True,1919,1919,1.0,1.0
+5ae3006c55429928c423959f,12,False,True,"Saint Michael, Barbados","Saint Michael, Barbados",1.0,1.0
+5a8d841955429941ae14dfe6,12,False,True,Eve Hewson,Eve Hewson,1.0,1.0
+5a7a112a5542990783324e2b,12,False,True,Mark Gaudet: indie/metal; Jan Axel Blomberg: heavy metal drummer,drummer,0.0,0.2
+5ac009bf5542997d642959a7,12,False,True,No information provided about the university in Pullman being named after someone. Answer: none.,Edward R. Murrow,0.0,0.0
+5ab5c263554299488d4d9a18,12,False,True,Belarus,Belarus,1.0,1.0
+5ae71f06554299572ea54708,12,False,True,Ferdinand Magellan,Ferdinand Magellan,1.0,1.0
+5a7a77425542995eb53be83e,12,False,True,Nick Carter,Brady Seals,0.0,0.0
+5abe4a365542993f32c2a0dc,12,False,False,no,more than 120 countries,0.0,0.0
+5a82bc7455429940e5e1a926,12,False,False,no,"""Red Rock West""",0.0,0.0
+5ae528ed5542993aec5ec16e,12,False,True,Revengers Tragedy,Revengers Tragedy,1.0,1.0
+5ae28058554299495565da90,12,False,False,1973,1958,0.0,0.0
+5a7e618155429949594199b0,12,False,True,Albany,Albany,1.0,1.0
+5a807ceb554299485f598616,12,False,True,Steve Coogan,Stephen John Coogan,0.0,0.4
+5ae143ed55429920d5234360,12,False,True,1755,1755,1.0,1.0
+5a81711455429938b614233e,12,False,True,Yes,yes,1.0,1.0
+5ab741005542992aa3b8c800,12,False,True,Bobby Hurley,Robert Matthew Hurley,0.0,0.4
+5a7351785542994cef4bc539,12,False,False,on film,erotic thriller film,0.0,0.4
+5a87c13f5542996e4f30890c,12,False,False,No,Rome,0.0,0.0
+5ae2133e554299495565d9e3,12,False,True,Jenn Brown,Kristine Leahy,0.0,0.0
+5ae152a65542990adbacf74f,12,False,True,"September 18, 2010","September 18, 2010",1.0,1.0
+5a82d71555429966c78a6a94,12,False,True,Yes,yes,1.0,1.0
+5ac083b0554299294b21900d,12,False,True,mixed drink,cocktail,0.0,0.0
+5a8f0796554299458435d528,12,False,True,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0
+5a75e62f5542992d0ec06013,12,False,True,Tropicana Casino & Resort,Tropicana Casino & Resort,1.0,1.0
+5a87106555429960ec39b71f,12,False,True,Rob Reiner,Rob Reiner,1.0,1.0
+5a7dbc175542995ed0d1666b,12,False,True,Anatoly Lunacharsky,Anatoly Vasilyevich Lunacharsky,0.0,0.8
+5a7e42df5542994959419954,12,False,False,Ghana national football team,Ghanaian national team,0.0,0.5714
+5ac0dcf25542996f0d89cc2c,12,False,True,Jane Mayer,Jane Mayer,1.0,1.0
+5a74adb455429916b01641c6,12,False,True,The Ladder,The Ladder,1.0,1.0
+5a7c6d98554299683c1c6304,12,False,True,No such series exists. Answer: no,Agent Carter,0.0,0.0
+5ab3a83d5542992ade7c6e08,12,False,False,The Daily Stormer,The Daily Stormer,1.0,1.0
+5ab31864554299233954ff06,12,False,True,Sarod,strings,0.0,0.0
+5ae1d4e8554299234fd04312,12,False,True,Rob Sitch,"Robert Ian ""Rob"" Sitch",0.0,0.6667
+5ac2cb09554299657fa29066,12,False,False,none,Texas Longhorns men's basketball team,0.0,0.0
+5a8a231a55429930ff3c0cb4,12,False,False,"Manitoba is bordered by North Dakota and Minnesota.  
+Answer: North Dakota, Minnesota",North Dakota and Minnesota,0.0,0.5
+5ae37e525542992e3233c42d,12,False,True,117 to 138 AD,24 January 76 – 10 July 138,0.0,0.1818
+5ab5ec0a5542997d4ad1f250,12,False,True,650,650 locations,0.0,0.6667
+5a86769c5542994775f60776,12,False,True,Slaughterhouse-Five,Slaughterhouse-Five,1.0,1.0
+5ae497f15542995ad6573db8,12,False,False,no,Distillery,0.0,0.0
+5ab9ddef5542994dbf019875,12,False,True,Yes,yes,1.0,1.0
+5a7fc8d05542992e7d278d86,12,False,True,"Iceal ""Gene"" Hambleton","Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.6667
+5ae1d0e8554299234fd0430a,12,False,True,Guthred,Guthred or Guthfrith,0.0,0.5
+5ab5d6155542997d4ad1f1fa,12,False,False,"No answer available. The question refers to ""the man who compiled the tracks for The Early Years,"" but no such person or band is mentioned in the provided passages.",Deep Purple,0.0,0.0
+5ab90d2755429916710eb0f0,12,False,False,No information provided about the creator of the series.,Christopher McCulloch,0.0,0.0
+5a7557d75542992d0ec05f68,12,False,True,Laurie Metcalf,Laurie Metcalf,1.0,1.0
+5abe3dc65542993f32c2a0c4,12,False,True,11,8,0.0,0.0
+5ab207f65542993be8fa98b8,12,False,True,Preston,Preston,1.0,1.0
+5ab3c7df55429969a97a81be,12,False,True,Shijiazhuang,Shijiazhuang,1.0,1.0
+5a7e37095542995ed0d166d5,12,False,True,Sinclair Hill,Sinclair Hill,1.0,1.0
+5a7aa0a55542990198eaf165,12,False,True,Jacques Feyder,Jacques Feyder,1.0,1.0
+5abe765a55429976d4830b1f,12,False,True,No,Amélie Simone Mauresmo,0.0,0.0
+5a8810485542997e5c09a590,12,False,False,"140,077",1.6 million passengers,0.0,0.0
+5a7f1d3c5542993067513639,12,False,True,Mercuria,Mercuria Energy Group Ltd,0.0,0.4
+5ab2659e554299340b5254b2,12,False,True,Parthian Empire,the Parthian Empire,1.0,1.0
+5a7b1023554299042af8f6c2,12,False,True,The Many Adventures of Winnie the Pooh,Ride a Wild Pony,0.0,0.0
+5a777ca855429949eeb29e6a,12,False,True,No,Walt Disney,0.0,0.0

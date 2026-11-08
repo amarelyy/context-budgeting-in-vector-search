@@ -39,6 +39,7 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 18 | 2026-11-08 | 6 (option 2) | [CQR](18_cqr.md) | done; no gain over global |
 | 19 | 2026-11-08 | 6 (option 3) | [Question-type signal](19_question_type_signal.md) | done; strong signal, no budget gain |
 | 20 | 2026-11-08 | 7.1-7.3 | [Token-budget retrieval on test](20_budget_retrieval_test.md) | done; coverage holds, no gain over calibrated fixed-k |
+| 21 | 2026-11-08 | 8.1-8.4 | [The four checks on test](21_four_checks_test.md) | done; 1 weak pass, 2 trivial pass, 3 pass, 4 fail |
 
 ## Biggest lessons so far
 
@@ -56,4 +57,5 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 12. **Per-bin budgets cost tokens instead of saving them** (global 1,399 → 3 bins 1,614 tokens on dev data). Each small bin pays its own finite-sample penalty, and the weak score cannot make up for it. The planned method does not beat fixed-k yet (run 17).
 13. **CQR fixes the bin problem but still loses to the global budget** (1,505 vs 1,399). A weak predictor makes per-query budgets worse than one shared budget (run 18).
 15. **On test, the conformal guarantee holds (0.931 vs 0.90) and the global budget saves 41% vs k = 20, but a fixed-k chosen on calibration by the same conformal rule (k = 12) does as well with more coverage.** The useful part is the conformal choice of size, not counting in tokens (run 20).
+16. **The four checks on test:** score AUROC 0.677 (weak pass, not significantly above `top1_dist`); ECE 0.038 (pass, but the score barely spreads); coverage 0.931 vs 0.90 (pass); `tokens_saved_pct` vs fixed-k at equal recall −9.8% (fail) (run 21).
 14. **At 90% coverage, the hardest 10% of queries set the budget, and they are all bridge questions.** A strong question-type signal (score AUROC 0.609 → 0.704) still gives no gain; even a perfect per-type budget would save only 2.7% (run 19).

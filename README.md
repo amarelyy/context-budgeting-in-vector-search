@@ -18,7 +18,7 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 | 5 | Score model (`conf_score`, logistic regression) | done (judged on fit only) |
 | 6 | Conformal budget: per bin (Mondrian), CQR, + question-type signal | done; no per-query method beats the global budget at alpha 0.1 (findings 8-10) |
 | 7 | Token-budget retrieval on test (main: global conformal budget) | done |
-| 8 | The four checks | not started |
+| 8 | The four checks on test | done (see "The four checks: results") |
 | 9-10 | Ablation, failure analysis, dedup, wrap-up | not started |
 
 ## Key findings so far
@@ -135,6 +135,17 @@ These are targets, not results.
 
 **On test, the global budget meets its coverage target** (0.931 of coverable queries vs a 0.90 target) and feeds 41% fewer tokens than k = 20, with an F1 change (−0.025) about the size of run-to-run noise. **But it does not beat fixed-k when k is chosen the same way** (k = 12 from calibration: about the same tokens, more coverage). The main method was declared before the test run; the calibration-chosen fixed-k was added afterwards as a stronger, fairer rival.
 
+**The four checks: results (test split, 75 queries, bootstrap 95% CIs):**
+
+| Check | Metric | Result | Hoped for | Verdict |
+|---|---|---|---|---|
+| 1. Does the score predict? | `auroc` | 0.677 [0.535, 0.806]; `top1_dist` rival 0.623 [0.488, 0.757] | > 0.5 and > `top1_dist` | weak pass: the difference is not significant |
+| 2. Is it calibrated? | `ece` | 0.038 [0.018, 0.147] | close to 0 | pass, but the score barely spreads (52 of 75 queries in one bin) |
+| 3. Is coverage right? | `coverage` | 0.931 [0.862, 0.983] | close to 0.90 | pass |
+| 4. Does it pay off? | `tokens_saved_pct` at equal recall vs fixed-k | −9.8% (41.1% vs k = 20) | positive | fail |
+
+Answer F1 at matched context size: global budget 0.521 vs fixed k = 12 0.537 (paired difference −0.016, CI [−0.058, +0.021], not significant).
+
 **Secondary setting (Qwen's values: temperature 0.7, seeds 1, 2, 3; error analysis only):**
 
 | k | EM (mean ± std) | answer_f1 (mean ± std) | F1 range over seeds |
@@ -200,4 +211,5 @@ python src\question_type.py             # question-type signal q_comparison
 python ablations\phase6_methods\run_methods.py          # dev estimate: global vs bins vs CQR (5 signals)
 python ablations\phase6_methods\run_methods.py --qtype  # same with the question-type signal
 python src\budget_retrieval.py          # Phase 7: token-budget retrieval + LLM on test
+python src\evaluate.py                  # Phase 8: the four checks on test
 ```

@@ -64,10 +64,10 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **7.3** Compare against the fixed-k baseline on the same queries. Log the table.
 
 ## Phase 8: The four checks
-- [ ] **8.1** `auroc` of `conf_score` against the gold-covered label, and against the `top1_dist` rival. **GATE:** if it does not beat the rival, stop and discuss with rr.
-- [ ] **8.2** `ece` and a reliability diagram.
-- [ ] **8.3** `coverage` on the test split versus 1 - alpha.
-- [ ] **8.4** `tokens_saved_pct` at equal `recall_at_budget` versus fixed-k (and `answer_f1` if an LLM is used).
+- [x] **8.1** `auroc` of `conf_score` against the gold-covered label, and against the `top1_dist` rival. **GATE:** if it does not beat the rival, stop and discuss with rr.
+- [x] **8.2** `ece` and a reliability diagram.
+- [x] **8.3** `coverage` on the test split versus 1 - alpha.
+- [x] **8.4** `tokens_saved_pct` at equal `recall_at_budget` versus fixed-k (and `answer_f1` if an LLM is used).
 
 ## Phase 9: Ablation, failure analysis, add-on
 - [ ] **9.1** Ablation: remove each signal one at a time and record what changes.
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 8.1-8.4 | `src/evaluate.py`, bootstrap CIs. auroc 0.677 [0.535, 0.806] vs top1_dist 0.623 (diff CI includes 0): weak pass of the GATE. ece 0.038 (score barely spreads: 52/75 in one bin). coverage 0.931 [0.862, 0.983] vs 0.90: pass. tokens_saved_pct at equal recall vs fixed-k −9.8% (global), −7.3% (bins3), −1.9% (CQR): fail; vs k=20 +41.1%. F1 global 0.521 vs k=12 0.537 (paired diff CI includes 0). Run note 21. Not committed. |
 | 2026-11-08 | 7.1-7.3 | Princess chose option A (global budget). Main pre-declared before test: global conformal q_hat 1,649; secondary bins3, CQR. Test (75): global recall 0.720, cond. coverage 0.931 (target 0.90), 1,551 tokens (41.1% saved vs k=20), F1 0.521 (k=20: 0.546). bins3 1,562 tokens, CQR 1,439. Added (post-hoc, conservative) fixed-k chosen on calibration by conformal on ranks: k=12 → recall 0.760, cov 0.983, 1,543 tokens: as cheap as global with more coverage. Hindsight k=11: 1,413 tokens at recall 0.720. Run note 20. Not committed. |
 | 2026-11-08 | 6 options 2 + 3 | Princess chose CQR, then the question-type signal. `src/cqr.py`, `src/question_type.py`, `ablations/phase6_methods/`. Dev estimate (no test): global 1,399 tokens; CQR 1,505 (5 signals) / 1,556 (6); bins3 1,614 / 1,608; all ~0.91-0.92 coverage. Question-type signal is strong (classifier AUROC 0.954; Spearman with tokens −0.32; score AUROC 0.609 → 0.704) but gives no budget gain: at 90% coverage the hardest 10% (bridge questions) set the budget; best case with true types −2.7%. STOP before Phase 7: Princess decides A / B / C (see open questions). Run notes 18, 19. Not committed. |
 | 2026-11-08 | 6.1-6.3 + dev estimate | `src/conformal.py`: 3 bins (edges from fit tertiles), q_hat global 1,649, bins 2,097 / 1,731 / 950 (coverable n 17 / 20 / 20). In-sample coverage 0.965 vs 0.930 global. Dev estimate (`ablations/phase6_mondrian/`, no test, out-of-fold scores, 500 re-splits): global 1,399 tokens / 45.1% saved, 2 bins 1,507 / 40.9%, 3 bins 1,614 / 36.7%; fixed k=12 0.929 / 1,486. **Negative: bins cost tokens.** Cause: per-bin finite-sample penalty with ~14-24 coverable per bin + weak score (AUROC 0.59). STOP before Phase 7 and discuss options (more data / CQR / stronger signal). Not committed. |
