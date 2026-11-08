@@ -8,9 +8,9 @@ import os
 
 from data_loader import load_raw
 
-# Qwen2.5 tokenizer = the tokenizer of the answering LLM (all Qwen2.5 sizes share it).
-# Changed from all-MiniLM-L6-v2 on 2026-11-08 (decision 2.3: use an LLM).
-TOKENIZER_NAME = "Qwen/Qwen2.5-7B-Instruct"
+# Tokenizer of the answering LLM (Qwen3-4B-Instruct-2507), decision 2.3.
+# History: all-MiniLM-L6-v2 -> Qwen2.5-7B-Instruct -> Qwen3-4B-Instruct-2507 (2026-11-08).
+TOKENIZER_NAME = "Qwen/Qwen3-4B-Instruct-2507"
 CHUNK_PATH = "data/processed/chunks.jsonl"
 GOLD_PATH = "data/processed/gold_chunk_ids.json"
 

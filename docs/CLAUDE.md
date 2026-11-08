@@ -30,6 +30,7 @@ Owner: rr, 3nd-year Information Engineering student Built for CV and research in
 - Report the **fixed-k baseline first**, then the adaptive method, on the **same queries**.
 - Only **one** of the five base components may be swapped (the gate, component 2). Do not add other swaps.
 - Log every result in `results/results.md`: date, config (k, alpha, bins, seed, split), the numbers, and a one-line "why did it change".
+- For every run, also write a detailed note in `results/runs/NN_name.md` (goal, setup, what happened, good findings, surprising, stagnant / weak, what went wrong, next) and add it to the index in `results/runs/README.md`.
 - Change **one thing at a time** between runs, so rr can explain the difference.
 - Use the exact variable names in the glossary (Section 6). Do not rename them.
 

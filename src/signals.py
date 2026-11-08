@@ -38,11 +38,17 @@ def compute_signals(dists, tau=TAU):
     }
 
 
+SIGNALS_PATH = "data/processed/signals.csv"
+RETRIEVAL_PATH = "data/processed/retrieval_top20.json"
+
+
 if __name__ == "__main__":
-    # small demo on 3 FIT queries (not the test split)
+    # 3.3: retrieve top_m for ALL queries (all splits) and save signals.
+    # Nothing is tuned here: signals are fixed functions of the distances.
     import json
 
     import faiss
+    import pandas as pd
 
     from data_loader import load_raw
     from index import INDEX_PATH, get_model, embed_texts, search_vec
@@ -51,10 +57,18 @@ if __name__ == "__main__":
     model = get_model()
     splits = json.load(open("data/processed/splits.json"))
     rows = {r["id"]: r for r in load_raw()}
-    qids = splits["fit"][:3]
-    _, D = search_vec(index, embed_texts(model, [rows[q]["question"] for q in qids]), TOP_M)
-    for q, d in zip(qids, D):
-        s = compute_signals(d)
-        print(rows[q]["question"][:70])
-        print("   top 5 dists:", np.round(d[:5], 4))
-        print("   ", {k: round(v, 4) if isinstance(v, float) else v for k, v in s.items()})
+
+    records, retrieval = [], {}
+    for split, qids in splits.items():
+        I, D = search_vec(index, embed_texts(model, [rows[q]["question"] for q in qids]), TOP_M)
+        for q, ids, d in zip(qids, I, D):
+            retrieval[q] = {"ids": ids.tolist(), "dists": np.round(d, 6).tolist()}
+            records.append({"query_id": q, "split": split, **compute_signals(d)})
+
+    df = pd.DataFrame(records)
+    df.to_csv(SIGNALS_PATH, index=False)
+    with open(RETRIEVAL_PATH, "w") as f:
+        json.dump(retrieval, f)
+    print("saved", len(df), "rows to", SIGNALS_PATH, "| top_m =", TOP_M, "| tau =", TAU)
+    print(df.groupby("split").size().to_string())
+    print("missing values:", int(df.isna().sum().sum()))

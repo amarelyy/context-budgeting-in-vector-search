@@ -13,6 +13,20 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Fixed-k baseline with LLM (task 2.4, test split, main setting)
+- Config: test split (75 queries), k = 0/5/10/20, qwen3:4b-instruct-2507-q4_K_M (Ollama 0.40.15), temperature 0, seed 42, num_ctx 5120, num_predict 256, prompt `src/prompt.py`, EM/F1 with HotpotQA normalization. Per-query CSV: `results/llm_baseline_test_main_seed42.csv`. Details: `results/runs/11_llm_baseline_test.md`.
+- Numbers:
+
+| k | recall_at_k (both gold) | total_tokens mean | EM | answer_f1 |
+|---|---|---|---|---|
+| 0 | 0.000 | 0 | 0.160 | 0.217 |
+| 5 | 0.560 | 595.2 | 0.400 | 0.518 |
+| 10 | 0.693 | 1274.1 | 0.413 | 0.537 |
+| 20 | 0.773 | 2634.0 | 0.440 | 0.546 |
+
+  Truncated 0/300, cut by num_predict 0/300.
+- Why it changed: first LLM run. Adds answer quality to the retrieval baseline. k = 5 → 20 is 4.4× the tokens for +0.028 F1.
+
 ### 2026-11-08: Oracle upper bound (FIT split only, NOT a method result)
 - Config: fit split (350 queries), top 20 candidates, token_cost tokenizer Qwen/Qwen2.5-7B-Instruct, other settings as the baseline. Oracle = stop exactly when the gold is covered (uses labels, impossible in practice). Rule: oracle is computed on fit only, never on test. Script: `notebooks/oracle_fit.py`.
 - Numbers: both gold in top 20 for 267 of 350 queries. Oracle tokens to cover both gold: mean 591.5, median 349.0. To cover first gold: mean 143.2, median 96.0. k=20 mean tokens (all fit queries) = 2558.4. **Maximum possible saving vs k=20 (both gold, same 267 queries) = 76.7%.**
