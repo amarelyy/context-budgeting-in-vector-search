@@ -1,0 +1,305 @@
+query_id,split,method,k,setting,seed,num_ctx,num_predict,fed_tokens,prompt_tokens_ours,prompt_eval_count,truncated,done_reason,gold_covered_both,gold_covered_any,gold_ranks,answer,gold_answer,em,f1,latency_s
+5a8555ea5542992a431d1b07,test,fixed_k,0,qwen,1,5120,256,0,77,77,False,stop,False,False,,"No answer. The movie ""The Dark Knight"" does not include ""Lujon.""",The Big Lebowski,0.0,0.0,15.601
+5a8555ea5542992a431d1b07,test,fixed_k,5,qwen,1,5120,256,678,779,779,False,stop,False,True,2,no,The Big Lebowski,0.0,0.0,0.233
+5a8555ea5542992a431d1b07,test,fixed_k,10,qwen,1,5120,256,1273,1390,1390,False,stop,True,True,2 7,W.E.,The Big Lebowski,0.0,0.0,0.245
+5a8555ea5542992a431d1b07,test,fixed_k,20,qwen,1,5120,256,2258,2411,2411,False,stop,True,True,2 7,W.E.,The Big Lebowski,0.0,0.0,0.371
+5ade51515542992fa25da745,test,fixed_k,0,qwen,1,5120,256,0,55,55,False,stop,False,False,,He did not stop serving. No.,report Hess's illegal May 1941 flight to Scotland,0.0,0.0,0.273
+5ade51515542992fa25da745,test,fixed_k,5,qwen,1,5120,256,588,665,665,False,stop,True,True,1 2,Flew to Scotland to negotiate peace.,report Hess's illegal May 1941 flight to Scotland,0.0,0.2857,0.298
+5ade51515542992fa25da745,test,fixed_k,10,qwen,1,5120,256,1323,1414,1414,False,stop,True,True,1 2,He flew to Scotland to negotiate peace.,report Hess's illegal May 1941 flight to Scotland,0.0,0.2667,0.337
+5ade51515542992fa25da745,test,fixed_k,20,qwen,1,5120,256,2886,3011,3011,False,stop,True,True,1 2,He flew to Scotland to negotiate peace.,report Hess's illegal May 1941 flight to Scotland,0.0,0.2667,0.591
+5ae7eb43554299540e5a5695,test,fixed_k,0,qwen,1,5120,256,0,71,71,False,stop,False,False,,No,Texas's 27th congressional district,0.0,0.0,0.213
+5ae7eb43554299540e5a5695,test,fixed_k,5,qwen,1,5120,256,1068,1161,1161,False,stop,False,True,1,Texas's 27th congressional district,Texas's 27th congressional district,1.0,1.0,0.427
+5ae7eb43554299540e5a5695,test,fixed_k,10,qwen,1,5120,256,1638,1747,1747,False,stop,False,True,1,Texas's 27th congressional district,Texas's 27th congressional district,1.0,1.0,0.293
+5ae7eb43554299540e5a5695,test,fixed_k,20,qwen,1,5120,256,2762,2905,2905,False,stop,True,True,1 12,Texas's 27th congressional district,Texas's 27th congressional district,1.0,1.0,0.488
+5ac4f9db55429924173fb532,test,fixed_k,0,qwen,1,5120,256,0,55,55,False,stop,False,False,,Genus,genus,1.0,1.0,0.234
+5ac4f9db55429924173fb532,test,fixed_k,5,qwen,1,5120,256,286,363,363,False,stop,True,True,2 3,Genera of flowering plants,genus,0.0,0.0,0.183
+5ac4f9db55429924173fb532,test,fixed_k,10,qwen,1,5120,256,708,801,801,False,stop,True,True,2 3,genus,genus,1.0,1.0,0.169
+5ac4f9db55429924173fb532,test,fixed_k,20,qwen,1,5120,256,1804,1936,1936,False,stop,True,True,2 3,Genera of flowering plants,genus,0.0,0.0,0.413
+5abdce1b5542993062266cfe,test,fixed_k,0,qwen,1,5120,256,0,50,50,False,stop,False,False,,Hennepin,Hennepin County,0.0,0.6667,0.2
+5abdce1b5542993062266cfe,test,fixed_k,5,qwen,1,5120,256,609,683,683,False,stop,False,True,1,Hennepin,Hennepin County,0.0,0.6667,0.259
+5abdce1b5542993062266cfe,test,fixed_k,10,qwen,1,5120,256,1536,1624,1624,False,stop,True,True,1 9,Hennepin,Hennepin County,0.0,0.6667,0.348
+5abdce1b5542993062266cfe,test,fixed_k,20,qwen,1,5120,256,3489,3615,3615,False,stop,True,True,1 9,Hennepin,Hennepin County,0.0,0.6667,0.663
+5a80ddc555429938b6142224,test,fixed_k,0,qwen,1,5120,256,0,69,69,False,stop,False,False,,Stephen Sondheim,Stephen Sondheim,1.0,1.0,0.252
+5a80ddc555429938b6142224,test,fixed_k,5,qwen,1,5120,256,862,954,954,False,stop,False,True,1,No,Stephen Sondheim,0.0,0.0,0.303
+5a80ddc555429938b6142224,test,fixed_k,10,qwen,1,5120,256,1510,1616,1616,False,stop,True,True,1 8,Stephen Sondheim,Stephen Sondheim,1.0,1.0,0.284
+5a80ddc555429938b6142224,test,fixed_k,20,qwen,1,5120,256,2731,2876,2876,False,stop,True,True,1 8,Stephen Sondheim,Stephen Sondheim,1.0,1.0,0.44
+5a8753d95542994846c1cd63,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,No,yes,0.0,0.0,0.2
+5a8753d95542994846c1cd63,test,fixed_k,5,qwen,1,5120,256,474,558,558,False,stop,True,True,1 2,No,yes,0.0,0.0,0.186
+5a8753d95542994846c1cd63,test,fixed_k,10,qwen,1,5120,256,798,898,898,False,stop,True,True,1 2,No,yes,0.0,0.0,0.133
+5a8753d95542994846c1cd63,test,fixed_k,20,qwen,1,5120,256,2273,2410,2410,False,stop,True,True,1 2,No,yes,0.0,0.0,0.45
+5ae226755542996483e64906,test,fixed_k,0,qwen,1,5120,256,0,56,56,False,stop,False,False,,Gradiente Expert,LNW-80,0.0,0.0,0.21
+5ae226755542996483e64906,test,fixed_k,5,qwen,1,5120,256,460,541,541,False,stop,True,True,1 2,LNW-80,LNW-80,1.0,1.0,0.233
+5ae226755542996483e64906,test,fixed_k,10,qwen,1,5120,256,1039,1135,1135,False,stop,True,True,1 2,LNW-80,LNW-80,1.0,1.0,0.276
+5ae226755542996483e64906,test,fixed_k,20,qwen,1,5120,256,2265,2399,2399,False,stop,True,True,1 2,LNW-80,LNW-80,1.0,1.0,0.451
+5a88fc4255429938390d4019,test,fixed_k,0,qwen,1,5120,256,0,74,74,False,stop,False,False,,No answer available.,"September 25, 2017",0.0,0.0,0.23
+5a88fc4255429938390d4019,test,fixed_k,5,qwen,1,5120,256,766,862,862,False,stop,False,True,2,No answer available in the passages.,"September 25, 2017",0.0,0.0,0.342
+5a88fc4255429938390d4019,test,fixed_k,10,qwen,1,5120,256,1624,1733,1733,False,stop,False,True,2,No date provided in passages.,"September 25, 2017",0.0,0.0,0.371
+5a88fc4255429938390d4019,test,fixed_k,20,qwen,1,5120,256,2829,2975,2975,False,stop,False,True,2,No,"September 25, 2017",0.0,0.0,0.416
+5ab5ac345542992aa134a37f,test,fixed_k,0,qwen,1,5120,256,0,69,69,False,stop,False,False,,Founder: Frederick the Great,"Frederick I, Elector of Saxony",0.0,0.25,0.313
+5ab5ac345542992aa134a37f,test,fixed_k,5,qwen,1,5120,256,766,857,857,False,stop,True,True,1 4,"Frederick I, Elector of Saxony and his brother William II, Margrave of Meissen","Frederick I, Elector of Saxony",0.0,0.5556,0.53
+5ab5ac345542992aa134a37f,test,fixed_k,10,qwen,1,5120,256,1287,1391,1391,False,stop,True,True,1 4,"Frederick I, Elector of Saxony and his brother William II, Margrave of Meissen.","Frederick I, Elector of Saxony",0.0,0.5556,0.504
+5ab5ac345542992aa134a37f,test,fixed_k,20,qwen,1,5120,256,3149,3288,3288,False,stop,True,True,1 4,"Frederick I, Elector of Saxony and his brother William II, Margrave of Meissen.","Frederick I, Elector of Saxony",0.0,0.5556,0.916
+5a8cee9b554299441c6b9f87,test,fixed_k,0,qwen,1,5120,256,0,56,56,False,stop,False,False,,Kenmore,GE Appliances,0.0,0.0,0.259
+5a8cee9b554299441c6b9f87,test,fixed_k,5,qwen,1,5120,256,559,640,640,False,stop,True,True,1 2,Hotpoint,GE Appliances,0.0,0.0,0.213
+5a8cee9b554299441c6b9f87,test,fixed_k,10,qwen,1,5120,256,1270,1366,1366,False,stop,True,True,1 2,Hotpoint,GE Appliances,0.0,0.0,0.254
+5a8cee9b554299441c6b9f87,test,fixed_k,20,qwen,1,5120,256,2691,2822,2822,False,stop,True,True,1 2,Hotpoint,GE Appliances,0.0,0.0,0.476
+5a7cb8bc554299452d57b9be,test,fixed_k,0,qwen,1,5120,256,0,57,57,False,stop,False,False,,"15,000","27,000",0.0,0.0,0.333
+5a7cb8bc554299452d57b9be,test,fixed_k,5,qwen,1,5120,256,551,631,632,False,stop,True,True,1 2,"27,000","27,000",1.0,1.0,0.283
+5a7cb8bc554299452d57b9be,test,fixed_k,10,qwen,1,5120,256,1152,1246,1247,False,stop,True,True,1 2,"27,000","27,000",1.0,1.0,0.276
+5a7cb8bc554299452d57b9be,test,fixed_k,20,qwen,1,5120,256,2274,2406,2407,False,stop,True,True,1 2,"27,000","27,000",1.0,1.0,0.468
+5ab5e024554299494045f097,test,fixed_k,0,qwen,1,5120,256,0,53,53,False,stop,False,False,,yes,yes,1.0,1.0,0.189
+5ab5e024554299494045f097,test,fixed_k,5,qwen,1,5120,256,645,722,722,False,stop,False,False,,Yes,yes,1.0,1.0,0.245
+5ab5e024554299494045f097,test,fixed_k,10,qwen,1,5120,256,1004,1097,1097,False,stop,False,False,,Yes,yes,1.0,1.0,0.154
+5ab5e024554299494045f097,test,fixed_k,20,qwen,1,5120,256,1760,1889,1889,False,stop,False,False,,yes,yes,1.0,1.0,0.279
+5a728b1c5542992359bc30e0,test,fixed_k,0,qwen,1,5120,256,0,58,58,False,stop,False,False,,Onew,Jonghyun,0.0,0.0,0.201
+5a728b1c5542992359bc30e0,test,fixed_k,5,qwen,1,5120,256,737,820,820,False,stop,False,True,4,Jonghyun,Jonghyun,1.0,1.0,0.306
+5a728b1c5542992359bc30e0,test,fixed_k,10,qwen,1,5120,256,1649,1748,1748,False,stop,False,True,4,Jonghyun,Jonghyun,1.0,1.0,0.351
+5a728b1c5542992359bc30e0,test,fixed_k,20,qwen,1,5120,256,3129,3265,3265,False,stop,False,True,4,Jonghyun,Jonghyun,1.0,1.0,0.541
+5ae0d52e554299603e418469,test,fixed_k,0,qwen,1,5120,256,0,74,74,False,stop,False,False,,Steve Carr,Douglas Jackson,0.0,0.0,0.328
+5ae0d52e554299603e418469,test,fixed_k,5,qwen,1,5120,256,530,628,628,False,stop,False,True,1,No,Douglas Jackson,0.0,0.0,0.203
+5ae0d52e554299603e418469,test,fixed_k,10,qwen,1,5120,256,1261,1371,1371,False,stop,False,True,1,Barbara Niven,Douglas Jackson,0.0,0.0,0.323
+5ae0d52e554299603e418469,test,fixed_k,20,qwen,1,5120,256,2552,2699,2699,False,stop,False,True,1,Barbara Niven,Douglas Jackson,0.0,0.0,0.475
+5ab29b07554299194fa93440,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Catonsville,"Columbia, Maryland",0.0,0.0,0.303
+5ab29b07554299194fa93440,test,fixed_k,5,qwen,1,5120,256,844,920,920,False,stop,True,True,4 5,Columbia,"Columbia, Maryland",0.0,0.6667,0.304
+5ab29b07554299194fa93440,test,fixed_k,10,qwen,1,5120,256,2320,2411,2411,False,stop,True,True,4 5,Baltimore,"Columbia, Maryland",0.0,0.0,0.475
+5ab29b07554299194fa93440,test,fixed_k,20,qwen,1,5120,256,3761,3890,3890,False,stop,True,True,4 5,Baltimore,"Columbia, Maryland",0.0,0.0,0.53
+5a8ed10b5542995085b374a0,test,fixed_k,0,qwen,1,5120,256,0,60,60,False,stop,False,False,,The Others,The Visit,0.0,0.0,0.374
+5a8ed10b5542995085b374a0,test,fixed_k,5,qwen,1,5120,256,444,529,529,False,stop,False,True,1,The Visit,The Visit,1.0,1.0,0.192
+5a8ed10b5542995085b374a0,test,fixed_k,10,qwen,1,5120,256,1108,1207,1207,False,stop,False,True,1,The Visit,The Visit,1.0,1.0,0.241
+5a8ed10b5542995085b374a0,test,fixed_k,20,qwen,1,5120,256,2487,2619,2619,False,stop,True,True,1 12,The Visit,The Visit,1.0,1.0,0.466
+5ae0120155429925eb1afbfb,test,fixed_k,0,qwen,1,5120,256,0,62,62,False,stop,False,False,,"2001 film: ""The Roundup""","My Boss, My Hero",0.0,0.0,0.371
+5ae0120155429925eb1afbfb,test,fixed_k,5,qwen,1,5120,256,391,478,478,False,stop,False,True,1,No,"My Boss, My Hero",0.0,0.0,0.166
+5ae0120155429925eb1afbfb,test,fixed_k,10,qwen,1,5120,256,696,798,798,False,stop,False,True,1,no,"My Boss, My Hero",0.0,0.0,0.125
+5ae0120155429925eb1afbfb,test,fixed_k,20,qwen,1,5120,256,1727,1865,1865,False,stop,False,True,1,No,"My Boss, My Hero",0.0,0.0,0.351
+5ae1faf15542997f29b3c1e3,test,fixed_k,0,qwen,1,5120,256,0,63,63,False,stop,False,False,,1990,1919,0.0,0.0,0.242
+5ae1faf15542997f29b3c1e3,test,fixed_k,5,qwen,1,5120,256,438,525,525,False,stop,True,True,1 3,1919,1919,1.0,1.0,0.222
+5ae1faf15542997f29b3c1e3,test,fixed_k,10,qwen,1,5120,256,946,1047,1047,False,stop,True,True,1 3,1919,1919,1.0,1.0,0.222
+5ae1faf15542997f29b3c1e3,test,fixed_k,20,qwen,1,5120,256,2197,2337,2337,False,stop,True,True,1 3,1919,1919,1.0,1.0,0.48
+5ae3006c55429928c423959f,test,fixed_k,0,qwen,1,5120,256,0,58,58,False,stop,False,False,,"Robyn Fenty was not a singer who performs ""Pon de Replay."" ""Pon de Replay"" is a song by the group **Robyn**, not Robyn Fenty.  
+
+Answer: Robyn","Saint Michael, Barbados",0.0,0.0,0.765
+5ae3006c55429928c423959f,test,fixed_k,5,qwen,1,5120,256,773,857,857,False,stop,True,True,1 2,"Saint Michael, Barbados","Saint Michael, Barbados",1.0,1.0,0.339
+5ae3006c55429928c423959f,test,fixed_k,10,qwen,1,5120,256,1394,1491,1491,False,stop,True,True,1 2,"Saint Michael, Barbados","Saint Michael, Barbados",1.0,1.0,0.269
+5ae3006c55429928c423959f,test,fixed_k,20,qwen,1,5120,256,2150,2284,2284,False,stop,True,True,1 2,"Saint Michael, Barbados","Saint Michael, Barbados",1.0,1.0,0.334
+5a8d841955429941ae14dfe6,test,fixed_k,0,qwen,1,5120,256,0,57,57,False,stop,False,False,,Jamie Harris,Eve Hewson,0.0,0.0,0.238
+5a8d841955429941ae14dfe6,test,fixed_k,5,qwen,1,5120,256,400,481,481,False,stop,True,True,1 4,Eve Hewson,Eve Hewson,1.0,1.0,0.2
+5a8d841955429941ae14dfe6,test,fixed_k,10,qwen,1,5120,256,1474,1571,1571,False,stop,True,True,1 4,Eve Hewson,Eve Hewson,1.0,1.0,0.382
+5a8d841955429941ae14dfe6,test,fixed_k,20,qwen,1,5120,256,3312,3448,3448,False,stop,True,True,1 4,Eve Hewson,Eve Hewson,1.0,1.0,0.635
+5a7a112a5542990783324e2b,test,fixed_k,0,qwen,1,5120,256,0,56,56,False,stop,False,False,,Heavy metal musicians,drummer,0.0,0.0,0.368
+5a7a112a5542990783324e2b,test,fixed_k,5,qwen,1,5120,256,541,622,622,False,stop,True,True,2 3,Mark Gaudet: indie/metal; Jan Axel Blomberg: heavy metal drummer,drummer,0.0,0.2,0.41
+5a7a112a5542990783324e2b,test,fixed_k,10,qwen,1,5120,256,1172,1268,1268,False,stop,True,True,2 3,Mark Gaudet: musician; Jan Axel Blomberg: drummer,drummer,0.0,0.25,0.419
+5a7a112a5542990783324e2b,test,fixed_k,20,qwen,1,5120,256,2224,2359,2359,False,stop,True,True,2 3,"Mark Gaudet: indie/metal musician  
+Jan Axel Blomberg: heavy metal drummer",drummer,0.0,0.1818,0.61
+5ac009bf5542997d642959a7,test,fixed_k,0,qwen,1,5120,256,0,52,52,False,stop,False,False,,Lewis and Clark,Edward R. Murrow,0.0,0.0,0.231
+5ac009bf5542997d642959a7,test,fixed_k,5,qwen,1,5120,256,351,428,428,False,stop,False,True,2,Washington State University,Edward R. Murrow,0.0,0.0,0.173
+5ac009bf5542997d642959a7,test,fixed_k,10,qwen,1,5120,256,973,1065,1065,False,stop,True,True,2 10,No,Edward R. Murrow,0.0,0.0,0.203
+5ac009bf5542997d642959a7,test,fixed_k,20,qwen,1,5120,256,2350,2480,2480,False,stop,True,True,2 10,No information provided about the university being named after someone. Answer: none.,Edward R. Murrow,0.0,0.0,0.63
+5ab5c263554299488d4d9a18,test,fixed_k,0,qwen,1,5120,256,0,65,65,False,stop,False,False,,Russia,Belarus,0.0,0.0,0.195
+5ab5c263554299488d4d9a18,test,fixed_k,5,qwen,1,5120,256,429,519,519,False,stop,False,True,3,Estonia,Belarus,0.0,0.0,0.204
+5ab5c263554299488d4d9a18,test,fixed_k,10,qwen,1,5120,256,731,837,837,False,stop,True,True,3 6,Belarus,Belarus,1.0,1.0,0.145
+5ab5c263554299488d4d9a18,test,fixed_k,20,qwen,1,5120,256,1982,2127,2127,False,stop,True,True,3 6,Estonia,Belarus,0.0,0.0,0.417
+5ae71f06554299572ea54708,test,fixed_k,0,qwen,1,5120,256,0,75,75,False,stop,False,False,,Magellan,Ferdinand Magellan,0.0,0.6667,0.207
+5ae71f06554299572ea54708,test,fixed_k,5,qwen,1,5120,256,639,735,735,False,stop,True,True,1 2,Ferdinand Magellan,Ferdinand Magellan,1.0,1.0,0.279
+5ae71f06554299572ea54708,test,fixed_k,10,qwen,1,5120,256,1326,1436,1436,False,stop,True,True,1 2,Ferdinand Magellan,Ferdinand Magellan,1.0,1.0,0.299
+5ae71f06554299572ea54708,test,fixed_k,20,qwen,1,5120,256,2694,2841,2841,False,stop,True,True,1 2,Ferdinand Magellan,Ferdinand Magellan,1.0,1.0,0.496
+5a7a77425542995eb53be83e,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Nick Carter,Brady Seals,0.0,0.0,0.227
+5a7a77425542995eb53be83e,test,fixed_k,5,qwen,1,5120,256,546,622,622,False,stop,False,True,3,Unknown,Brady Seals,0.0,0.0,0.188
+5a7a77425542995eb53be83e,test,fixed_k,10,qwen,1,5120,256,1651,1743,1743,False,stop,True,True,3 6,3,Brady Seals,0.0,0.0,0.36
+5a7a77425542995eb53be83e,test,fixed_k,20,qwen,1,5120,256,3107,3238,3238,False,stop,True,True,3 6,Brady Seals,Brady Seals,1.0,1.0,0.52
+5abe4a365542993f32c2a0dc,test,fixed_k,0,qwen,1,5120,256,0,76,76,False,stop,False,False,,120,more than 120 countries,0.0,0.4,0.289
+5abe4a365542993f32c2a0dc,test,fixed_k,5,qwen,1,5120,256,773,873,873,False,stop,False,True,1,No,more than 120 countries,0.0,0.0,0.257
+5abe4a365542993f32c2a0dc,test,fixed_k,10,qwen,1,5120,256,1472,1588,1588,False,stop,False,True,1,no,more than 120 countries,0.0,0.0,0.236
+5abe4a365542993f32c2a0dc,test,fixed_k,20,qwen,1,5120,256,2387,2541,2541,False,stop,False,True,1,no,more than 120 countries,0.0,0.0,0.342
+5a82bc7455429940e5e1a926,test,fixed_k,0,qwen,1,5120,256,0,72,72,False,stop,False,False,,Jerry Seinfeld,"""Red Rock West""",0.0,0.0,0.262
+5a82bc7455429940e5e1a926,test,fixed_k,5,qwen,1,5120,256,493,590,590,False,stop,False,False,,No,"""Red Rock West""",0.0,0.0,0.207
+5a82bc7455429940e5e1a926,test,fixed_k,10,qwen,1,5120,256,1219,1330,1330,False,stop,False,False,,no,"""Red Rock West""",0.0,0.0,0.245
+5a82bc7455429940e5e1a926,test,fixed_k,20,qwen,1,5120,256,2711,2860,2860,False,stop,False,True,15,Moonstruck,"""Red Rock West""",0.0,0.0,0.513
+5ae528ed5542993aec5ec16e,test,fixed_k,0,qwen,1,5120,256,0,69,69,False,stop,False,False,,"No Way, Out",Revengers Tragedy,0.0,0.0,0.259
+5ae528ed5542993aec5ec16e,test,fixed_k,5,qwen,1,5120,256,427,519,519,False,stop,True,True,1 2,Revengers Tragedy,Revengers Tragedy,1.0,1.0,0.261
+5ae528ed5542993aec5ec16e,test,fixed_k,10,qwen,1,5120,256,961,1067,1067,False,stop,True,True,1 2,Revengers Tragedy,Revengers Tragedy,1.0,1.0,0.244
+5ae528ed5542993aec5ec16e,test,fixed_k,20,qwen,1,5120,256,1960,2105,2105,False,stop,True,True,1 2,Revengers Tragedy,Revengers Tragedy,1.0,1.0,0.406
+5ae28058554299495565da90,test,fixed_k,0,qwen,1,5120,256,0,60,60,False,stop,False,False,,1932,1958,0.0,0.0,0.243
+5ae28058554299495565da90,test,fixed_k,5,qwen,1,5120,256,434,517,517,False,stop,False,True,3,1939,1958,0.0,0.0,0.202
+5ae28058554299495565da90,test,fixed_k,10,qwen,1,5120,256,1345,1442,1442,False,stop,False,True,3,1939,1958,0.0,0.0,0.361
+5ae28058554299495565da90,test,fixed_k,20,qwen,1,5120,256,2836,2967,2967,False,stop,False,True,3,Unknown,1958,0.0,0.0,0.482
+5a7e618155429949594199b0,test,fixed_k,0,qwen,1,5120,256,0,63,63,False,stop,False,False,,Bronx,Albany,0.0,0.0,0.228
+5a7e618155429949594199b0,test,fixed_k,5,qwen,1,5120,256,900,988,988,False,stop,False,True,1,Colonie,Albany,0.0,0.0,0.336
+5a7e618155429949594199b0,test,fixed_k,10,qwen,1,5120,256,1733,1835,1835,False,stop,False,True,1,Colonie,Albany,0.0,0.0,0.292
+5a7e618155429949594199b0,test,fixed_k,20,qwen,1,5120,256,3017,3156,3156,False,stop,True,True,1 11,Colonie,Albany,0.0,0.0,0.441
+5a807ceb554299485f598616,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,David Attenborough,Stephen John Coogan,0.0,0.0,0.311
+5a807ceb554299485f598616,test,fixed_k,5,qwen,1,5120,256,584,669,669,False,stop,True,True,1 4,Steve Nallon,Stephen John Coogan,0.0,0.0,0.228
+5a807ceb554299485f598616,test,fixed_k,10,qwen,1,5120,256,912,1012,1012,False,stop,True,True,1 4,Steve Nallon,Stephen John Coogan,0.0,0.0,0.171
+5a807ceb554299485f598616,test,fixed_k,20,qwen,1,5120,256,1860,1995,1995,False,stop,True,True,1 4,Steve Coogan,Stephen John Coogan,0.0,0.4,0.345
+5ae143ed55429920d5234360,test,fixed_k,0,qwen,1,5120,256,0,60,60,False,stop,False,False,,1724,1755,0.0,0.0,0.21
+5ae143ed55429920d5234360,test,fixed_k,5,qwen,1,5120,256,409,486,486,False,stop,True,True,1 5,1755,1755,1.0,1.0,0.195
+5ae143ed55429920d5234360,test,fixed_k,10,qwen,1,5120,256,868,956,956,False,stop,True,True,1 5,1755,1755,1.0,1.0,0.212
+5ae143ed55429920d5234360,test,fixed_k,20,qwen,1,5120,256,2001,2117,2117,False,stop,True,True,1 5,1755,1755,1.0,1.0,0.412
+5a81711455429938b614233e,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Yes,yes,1.0,1.0,0.176
+5a81711455429938b614233e,test,fixed_k,5,qwen,1,5120,256,424,502,502,False,stop,True,True,1 3,Yes,yes,1.0,1.0,0.166
+5a81711455429938b614233e,test,fixed_k,10,qwen,1,5120,256,751,843,843,False,stop,True,True,1 3,Yes,yes,1.0,1.0,0.138
+5a81711455429938b614233e,test,fixed_k,20,qwen,1,5120,256,1816,1944,1944,False,stop,True,True,1 3,Yes,yes,1.0,1.0,0.346
+5ab741005542992aa3b8c800,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,Dan Hurley is not the brother of any head coach of Arizona State's men's basketball team. Answer: no.,Robert Matthew Hurley,0.0,0.1,0.463
+5ab741005542992aa3b8c800,test,fixed_k,5,qwen,1,5120,256,639,723,723,False,stop,True,True,1 2,Bobby Hurley,Robert Matthew Hurley,0.0,0.4,0.269
+5ab741005542992aa3b8c800,test,fixed_k,10,qwen,1,5120,256,1535,1633,1633,False,stop,True,True,1 2,Bobby Hurley,Robert Matthew Hurley,0.0,0.4,0.344
+5ab741005542992aa3b8c800,test,fixed_k,20,qwen,1,5120,256,3032,3169,3169,False,stop,True,True,1 2,Bobby Hurley,Robert Matthew Hurley,0.0,0.4,0.527
+5a7351785542994cef4bc539,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Film,erotic thriller film,0.0,0.5,0.309
+5a7351785542994cef4bc539,test,fixed_k,5,qwen,1,5120,256,760,836,836,False,stop,False,True,1,On film.,erotic thriller film,0.0,0.4,0.288
+5a7351785542994cef4bc539,test,fixed_k,10,qwen,1,5120,256,1514,1605,1605,False,stop,False,True,1,On film.,erotic thriller film,0.0,0.4,0.292
+5a7351785542994cef4bc539,test,fixed_k,20,qwen,1,5120,256,3528,3657,3657,False,stop,False,True,1,film,erotic thriller film,0.0,0.5,0.641
+5a87c13f5542996e4f30890c,test,fixed_k,0,qwen,1,5120,256,0,67,67,False,stop,False,False,,New York,Rome,0.0,0.0,0.304
+5a87c13f5542996e4f30890c,test,fixed_k,5,qwen,1,5120,256,562,652,652,False,stop,False,False,,Turin,Rome,0.0,0.0,0.218
+5a87c13f5542996e4f30890c,test,fixed_k,10,qwen,1,5120,256,1217,1322,1322,False,stop,False,True,6,New York,Rome,0.0,0.0,0.245
+5a87c13f5542996e4f30890c,test,fixed_k,20,qwen,1,5120,256,2741,2883,2883,False,stop,True,True,6 19,Rome,Rome,1.0,1.0,0.505
+5ae2133e554299495565d9e3,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,no,Kristine Leahy,0.0,0.0,0.308
+5ae2133e554299495565d9e3,test,fixed_k,5,qwen,1,5120,256,563,647,647,False,stop,True,True,1 2,Jenn Brown,Kristine Leahy,0.0,0.0,0.246
+5ae2133e554299495565d9e3,test,fixed_k,10,qwen,1,5120,256,1249,1348,1348,False,stop,True,True,1 2,Jenn Brown,Kristine Leahy,0.0,0.0,0.26
+5ae2133e554299495565d9e3,test,fixed_k,20,qwen,1,5120,256,2452,2588,2588,False,stop,True,True,1 2,Kristine Leahy,Kristine Leahy,1.0,1.0,0.44
+5ae152a65542990adbacf74f,test,fixed_k,0,qwen,1,5120,256,0,63,63,False,stop,False,False,,2014,"September 18, 2010",0.0,0.0,0.239
+5ae152a65542990adbacf74f,test,fixed_k,5,qwen,1,5120,256,627,714,714,False,stop,True,True,2 3,"September 18, 2010","September 18, 2010",1.0,1.0,0.34
+5ae152a65542990adbacf74f,test,fixed_k,10,qwen,1,5120,256,1233,1334,1334,False,stop,True,True,2 3,"September 18, 2010","September 18, 2010",1.0,1.0,0.33
+5ae152a65542990adbacf74f,test,fixed_k,20,qwen,1,5120,256,2068,2208,2208,False,stop,True,True,2 3,2010,"September 18, 2010",0.0,0.5,0.36
+5a82d71555429966c78a6a94,test,fixed_k,0,qwen,1,5120,256,0,55,55,False,stop,False,False,,Yes,yes,1.0,1.0,0.304
+5a82d71555429966c78a6a94,test,fixed_k,5,qwen,1,5120,256,548,628,628,False,stop,True,True,1 2,Yes,yes,1.0,1.0,0.194
+5a82d71555429966c78a6a94,test,fixed_k,10,qwen,1,5120,256,1177,1271,1271,False,stop,True,True,1 2,Yes,yes,1.0,1.0,0.209
+5a82d71555429966c78a6a94,test,fixed_k,20,qwen,1,5120,256,2662,2796,2796,False,stop,True,True,1 2,Yes,yes,1.0,1.0,0.466
+5ac083b0554299294b21900d,test,fixed_k,0,qwen,1,5120,256,0,56,56,False,stop,False,False,,Cocktail,cocktail,1.0,1.0,0.323
+5ac083b0554299294b21900d,test,fixed_k,5,qwen,1,5120,256,551,631,631,False,stop,True,True,1 2,Cocktail,cocktail,1.0,1.0,0.241
+5ac083b0554299294b21900d,test,fixed_k,10,qwen,1,5120,256,1214,1308,1308,False,stop,True,True,1 2,Both are cocktails.,cocktail,0.0,0.0,0.276
+5ac083b0554299294b21900d,test,fixed_k,20,qwen,1,5120,256,2396,2529,2529,False,stop,True,True,1 2,rum,cocktail,0.0,0.0,0.377
+5a8f0796554299458435d528,test,fixed_k,0,qwen,1,5120,256,0,69,69,False,stop,False,False,,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0,0.321
+5a8f0796554299458435d528,test,fixed_k,5,qwen,1,5120,256,373,467,467,False,stop,True,True,1 2,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0,0.234
+5a8f0796554299458435d528,test,fixed_k,10,qwen,1,5120,256,859,969,969,False,stop,True,True,1 2,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0,0.24
+5a8f0796554299458435d528,test,fixed_k,20,qwen,1,5120,256,2360,2505,2505,False,stop,True,True,1 2,Eielson Air Force Base,Eielson Air Force Base,1.0,1.0,0.539
+5a75e62f5542992d0ec06013,test,fixed_k,0,qwen,1,5120,256,0,64,64,False,stop,False,False,,The Paramount Hotel & Casino,Tropicana Casino & Resort,0.0,0.3333,0.336
+5a75e62f5542992d0ec06013,test,fixed_k,5,qwen,1,5120,256,679,768,768,False,stop,True,True,2 4,Tropicana Resort & Casino,Tropicana Casino & Resort,0.0,1.0,0.29
+5a75e62f5542992d0ec06013,test,fixed_k,10,qwen,1,5120,256,1175,1277,1277,False,stop,True,True,2 4,Tropicana Casino & Resort,Tropicana Casino & Resort,1.0,1.0,0.248
+5a75e62f5542992d0ec06013,test,fixed_k,20,qwen,1,5120,256,2948,3090,3090,False,stop,True,True,2 4,Tropicana Resort & Casino,Tropicana Casino & Resort,0.0,1.0,0.643
+5a87106555429960ec39b71f,test,fixed_k,0,qwen,1,5120,256,0,58,58,False,stop,False,False,,David Lynch,Rob Reiner,0.0,0.0,0.276
+5a87106555429960ec39b71f,test,fixed_k,5,qwen,1,5120,256,522,604,604,False,stop,True,True,1 2,Rob Reiner,Rob Reiner,1.0,1.0,0.216
+5a87106555429960ec39b71f,test,fixed_k,10,qwen,1,5120,256,1164,1259,1259,False,stop,True,True,1 2,Rob Reiner,Rob Reiner,1.0,1.0,0.25
+5a87106555429960ec39b71f,test,fixed_k,20,qwen,1,5120,256,2594,2727,2727,False,stop,True,True,1 2,Rob Reiner,Rob Reiner,1.0,1.0,0.484
+5a7dbc175542995ed0d1666b,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,Friedrich Engels,Anatoly Vasilyevich Lunacharsky,0.0,0.0,0.297
+5a7dbc175542995ed0d1666b,test,fixed_k,5,qwen,1,5120,256,497,580,580,False,stop,True,True,1 3,Anatoly Lunacharsky,Anatoly Vasilyevich Lunacharsky,0.0,0.8,0.273
+5a7dbc175542995ed0d1666b,test,fixed_k,10,qwen,1,5120,256,1179,1273,1273,False,stop,True,True,1 3,Anatoly Lunacharsky,Anatoly Vasilyevich Lunacharsky,0.0,0.8,0.31
+5a7dbc175542995ed0d1666b,test,fixed_k,20,qwen,1,5120,256,2542,2668,2668,False,stop,True,True,1 3,Anatoly Lunacharsky,Anatoly Vasilyevich Lunacharsky,0.0,0.8,0.545
+5a7e42df5542994959419954,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,Slovenia national team,Ghanaian national team,0.0,0.6667,0.269
+5a7e42df5542994959419954,test,fixed_k,5,qwen,1,5120,256,745,828,828,False,stop,False,True,1,Ghana's team,Ghanaian national team,0.0,0.4,0.298
+5a7e42df5542994959419954,test,fixed_k,10,qwen,1,5120,256,1297,1394,1394,False,stop,False,True,1,Ghana national team,Ghanaian national team,0.0,0.6667,0.25
+5a7e42df5542994959419954,test,fixed_k,20,qwen,1,5120,256,2491,2626,2626,False,stop,False,True,1,Ghana national team,Ghanaian national team,0.0,0.6667,0.458
+5ac0dcf25542996f0d89cc2c,test,fixed_k,0,qwen,1,5120,256,0,62,62,False,stop,False,False,,John M. Harlan III,Jane Mayer,0.0,0.0,0.269
+5ac0dcf25542996f0d89cc2c,test,fixed_k,5,qwen,1,5120,256,647,734,734,False,stop,True,True,1 5,Jane Mayer,Jane Mayer,1.0,1.0,0.236
+5ac0dcf25542996f0d89cc2c,test,fixed_k,10,qwen,1,5120,256,1088,1190,1190,False,stop,True,True,1 5,Jane Mayer,Jane Mayer,1.0,1.0,0.181
+5ac0dcf25542996f0d89cc2c,test,fixed_k,20,qwen,1,5120,256,2101,2242,2242,False,stop,True,True,1 5,Jane Mayer,Jane Mayer,1.0,1.0,0.364
+5a74adb455429916b01641c6,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,The first publication of The Ladder.,The Ladder,0.0,0.4,0.291
+5a74adb455429916b01641c6,test,fixed_k,5,qwen,1,5120,256,673,751,751,False,stop,True,True,1 5,The first publication of The Ladder,The Ladder,0.0,0.4,0.311
+5a74adb455429916b01641c6,test,fixed_k,10,qwen,1,5120,256,1564,1656,1656,False,stop,True,True,1 5,The Ladder,The Ladder,1.0,1.0,0.335
+5a74adb455429916b01641c6,test,fixed_k,20,qwen,1,5120,256,2810,2939,2939,False,stop,True,True,1 5,The Ladder,The Ladder,1.0,1.0,0.447
+5a7c6d98554299683c1c6304,test,fixed_k,0,qwen,1,5120,256,0,63,63,False,stop,False,False,,Scandal,Agent Carter,0.0,0.0,0.243
+5a7c6d98554299683c1c6304,test,fixed_k,5,qwen,1,5120,256,508,597,597,False,stop,False,True,1,Agent Carter,Agent Carter,1.0,1.0,0.21
+5a7c6d98554299683c1c6304,test,fixed_k,10,qwen,1,5120,256,1301,1406,1406,False,stop,True,True,1 8,No,Agent Carter,0.0,0.0,0.283
+5a7c6d98554299683c1c6304,test,fixed_k,20,qwen,1,5120,256,3102,3243,3243,False,stop,True,True,1 8,No,Agent Carter,0.0,0.0,0.565
+5ab3a83d5542992ade7c6e08,test,fixed_k,0,qwen,1,5120,256,0,60,60,False,stop,False,False,,Infowars,The Daily Stormer,0.0,0.0,0.28
+5ab3a83d5542992ade7c6e08,test,fixed_k,5,qwen,1,5120,256,760,841,841,False,stop,False,True,1,The Daily Stormer,The Daily Stormer,1.0,1.0,0.295
+5ab3a83d5542992ade7c6e08,test,fixed_k,10,qwen,1,5120,256,2057,2152,2152,False,stop,False,True,1,The Daily Stormer,The Daily Stormer,1.0,1.0,0.443
+5ab3a83d5542992ade7c6e08,test,fixed_k,20,qwen,1,5120,256,3456,3588,3588,False,stop,False,True,1,The Daily Stormer,The Daily Stormer,1.0,1.0,0.513
+5ab31864554299233954ff06,test,fixed_k,0,qwen,1,5120,256,0,53,53,False,stop,False,False,,Keyboard,strings,0.0,0.0,0.244
+5ab31864554299233954ff06,test,fixed_k,5,qwen,1,5120,256,731,809,809,False,stop,True,True,1 2,Stringed instrument,strings,0.0,0.0,0.3
+5ab31864554299233954ff06,test,fixed_k,10,qwen,1,5120,256,1359,1451,1451,False,stop,True,True,1 2,Sarod,strings,0.0,0.0,0.239
+5ab31864554299233954ff06,test,fixed_k,20,qwen,1,5120,256,3076,3205,3205,False,stop,True,True,1 2,Sarod,strings,0.0,0.0,0.57
+5ae1d4e8554299234fd04312,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Peter Weir,"Robert Ian ""Rob"" Sitch",0.0,0.0,0.306
+5ae1d4e8554299234fd04312,test,fixed_k,5,qwen,1,5120,256,409,488,488,False,stop,True,True,1 3,Rob Sitch,"Robert Ian ""Rob"" Sitch",0.0,0.6667,0.184
+5ae1d4e8554299234fd04312,test,fixed_k,10,qwen,1,5120,256,915,1011,1011,False,stop,True,True,1 3,Rob Sitch,"Robert Ian ""Rob"" Sitch",0.0,0.6667,0.204
+5ae1d4e8554299234fd04312,test,fixed_k,20,qwen,1,5120,256,2573,2705,2705,False,stop,True,True,1 3,Rob Sitch,"Robert Ian ""Rob"" Sitch",0.0,0.6667,0.541
+5ac2cb09554299657fa29066,test,fixed_k,0,qwen,1,5120,256,0,62,62,False,stop,False,False,,Texas Tech,Texas Longhorns men's basketball team,0.0,0.2857,0.252
+5ac2cb09554299657fa29066,test,fixed_k,5,qwen,1,5120,256,633,719,719,False,stop,False,True,1,None,Texas Longhorns men's basketball team,0.0,0.0,0.233
+5ac2cb09554299657fa29066,test,fixed_k,10,qwen,1,5120,256,1667,1769,1769,False,stop,False,True,1,None of the teams Travis Cortez Mays played for are in the Big 12 Conference. Answer: no.,Texas Longhorns men's basketball team,0.0,0.0,0.652
+5ac2cb09554299657fa29066,test,fixed_k,20,qwen,1,5120,256,3315,3456,3456,False,stop,False,True,1,None,Texas Longhorns men's basketball team,0.0,0.0,0.547
+5a8a231a55429930ff3c0cb4,test,fixed_k,0,qwen,1,5120,256,0,65,65,False,stop,False,False,,Missouri and Wisconsin,North Dakota and Minnesota,0.0,0.2857,0.332
+5a8a231a55429930ff3c0cb4,test,fixed_k,5,qwen,1,5120,256,322,408,408,False,stop,False,True,1,Michigan and Minnesota,North Dakota and Minnesota,0.0,0.5714,0.174
+5a8a231a55429930ff3c0cb4,test,fixed_k,10,qwen,1,5120,256,820,922,922,False,stop,False,True,1,"Manitoba borders North Dakota and Saskatchewan.  
+No.",North Dakota and Minnesota,0.0,0.5455,0.331
+5a8a231a55429930ff3c0cb4,test,fixed_k,20,qwen,1,5120,256,1745,1881,1881,False,stop,False,True,1,Saskatchewan and Manitoba,North Dakota and Minnesota,0.0,0.2857,0.371
+5ae37e525542992e3233c42d,test,fixed_k,0,qwen,1,5120,256,0,61,61,False,stop,False,False,,138–161 CE,24 January 76 – 10 July 138,0.0,0.0,0.314
+5ae37e525542992e3233c42d,test,fixed_k,5,qwen,1,5120,256,575,660,660,False,stop,False,True,5,138–161,24 January 76 – 10 July 138,0.0,0.0,0.315
+5ae37e525542992e3233c42d,test,fixed_k,10,qwen,1,5120,256,1553,1654,1654,False,stop,True,True,5 6,117 to 138 AD,24 January 76 – 10 July 138,0.0,0.1818,0.431
+5ae37e525542992e3233c42d,test,fixed_k,20,qwen,1,5120,256,3412,3549,3549,False,stop,True,True,5 6,117 to 138 AD,24 January 76 – 10 July 138,0.0,0.1818,0.764
+5ab5ec0a5542997d4ad1f250,test,fixed_k,0,qwen,1,5120,256,0,61,61,False,stop,False,False,,53,650 locations,0.0,0.0,0.329
+5ab5ec0a5542997d4ad1f250,test,fixed_k,5,qwen,1,5120,256,436,522,522,False,stop,True,True,1 4,No information provided about BJ's number of locations as of early 2008. Answer: no,650 locations,0.0,0.125,0.437
+5ab5ec0a5542997d4ad1f250,test,fixed_k,10,qwen,1,5120,256,1077,1177,1177,False,stop,True,True,1 4,No information provided in the passages about the number of BJ's Wholesale Club locations as of early 2008.,650 locations,0.0,0.1111,0.539
+5ab5ec0a5542997d4ad1f250,test,fixed_k,20,qwen,1,5120,256,2259,2397,2397,False,stop,True,True,1 4,500,650 locations,0.0,0.0,0.42
+5a86769c5542994775f60776,test,fixed_k,0,qwen,1,5120,256,0,66,66,False,stop,False,False,,1984,Slaughterhouse-Five,0.0,0.0,0.261
+5a86769c5542994775f60776,test,fixed_k,5,qwen,1,5120,256,551,641,641,False,stop,True,True,1 5,Slaughterhouse-Five,Slaughterhouse-Five,1.0,1.0,0.257
+5a86769c5542994775f60776,test,fixed_k,10,qwen,1,5120,256,1506,1611,1611,False,stop,True,True,1 5,Slaughterhouse-Five,Slaughterhouse-Five,1.0,1.0,0.361
+5a86769c5542994775f60776,test,fixed_k,20,qwen,1,5120,256,2789,2931,2931,False,stop,True,True,1 5,Slaughterhouse-Five,Slaughterhouse-Five,1.0,1.0,0.488
+5ae497f15542995ad6573db8,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Glentoran,Distillery,0.0,0.0,0.276
+5ae497f15542995ad6573db8,test,fixed_k,5,qwen,1,5120,256,316,395,395,False,stop,False,True,1,No,Distillery,0.0,0.0,0.156
+5ae497f15542995ad6573db8,test,fixed_k,10,qwen,1,5120,256,998,1092,1092,False,stop,False,True,1,No,Distillery,0.0,0.0,0.228
+5ae497f15542995ad6573db8,test,fixed_k,20,qwen,1,5120,256,2511,2637,2637,False,stop,False,True,1,No,Distillery,0.0,0.0,0.469
+5ab9ddef5542994dbf019875,test,fixed_k,0,qwen,1,5120,256,0,55,55,False,stop,False,False,,Yes,yes,1.0,1.0,0.232
+5ab9ddef5542994dbf019875,test,fixed_k,5,qwen,1,5120,256,738,813,813,False,stop,True,True,1 3,Yes,yes,1.0,1.0,0.251
+5ab9ddef5542994dbf019875,test,fixed_k,10,qwen,1,5120,256,1175,1264,1264,False,stop,True,True,1 3,yes,yes,1.0,1.0,0.173
+5ab9ddef5542994dbf019875,test,fixed_k,20,qwen,1,5120,256,2164,2287,2287,False,stop,True,True,1 3,yes,yes,1.0,1.0,0.361
+5a7fc8d05542992e7d278d86,test,fixed_k,0,qwen,1,5120,256,0,69,69,False,stop,False,False,,Chet Coppock,"Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.0,0.291
+5a7fc8d05542992e7d278d86,test,fixed_k,5,qwen,1,5120,256,737,830,830,False,stop,False,True,1,No,"Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.0,0.258
+5a7fc8d05542992e7d278d86,test,fixed_k,10,qwen,1,5120,256,1382,1490,1490,False,stop,True,True,1 7,"Iceal ""Gene"" Hambleton","Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.6667,0.333
+5a7fc8d05542992e7d278d86,test,fixed_k,20,qwen,1,5120,256,3855,4000,4000,False,stop,True,True,1 7,"Iceal ""Gene"" Hambleton","Lieutenant Colonel Iceal E. ""Gene"" Hambleton",0.0,0.6667,0.897
+5ae1d0e8554299234fd0430a,test,fixed_k,0,qwen,1,5120,256,0,64,64,False,stop,False,False,,Ethelred,Guthred or Guthfrith,0.0,0.0,0.371
+5ae1d0e8554299234fd0430a,test,fixed_k,5,qwen,1,5120,256,882,971,971,False,stop,False,True,2,Guthred,Guthred or Guthfrith,0.0,0.5,0.34
+5ae1d0e8554299234fd0430a,test,fixed_k,10,qwen,1,5120,256,1700,1803,1803,False,stop,True,True,2 6,Guthred,Guthred or Guthfrith,0.0,0.5,0.306
+5ae1d0e8554299234fd0430a,test,fixed_k,20,qwen,1,5120,256,3014,3154,3154,False,stop,True,True,2 6,Guthred,Guthred or Guthfrith,0.0,0.5,0.47
+5ab5d6155542997d4ad1f1fa,test,fixed_k,0,qwen,1,5120,256,0,70,70,False,stop,False,False,,The Beatles,Deep Purple,0.0,0.0,0.288
+5ab5d6155542997d4ad1f1fa,test,fixed_k,5,qwen,1,5120,256,703,799,799,False,stop,False,False,,Red Hot Chili Peppers,Deep Purple,0.0,0.0,0.305
+5ab5d6155542997d4ad1f1fa,test,fixed_k,10,qwen,1,5120,256,1606,1719,1719,False,stop,False,False,,No answer available in passages.,Deep Purple,0.0,0.0,0.386
+5ab5d6155542997d4ad1f1fa,test,fixed_k,20,qwen,1,5120,256,3382,3534,3534,False,stop,False,False,,No answer available.,Deep Purple,0.0,0.0,0.627
+5ab90d2755429916710eb0f0,test,fixed_k,0,qwen,1,5120,256,0,65,65,False,stop,False,False,,Phil LaMarr,Christopher McCulloch,0.0,0.0,0.38
+5ab90d2755429916710eb0f0,test,fixed_k,5,qwen,1,5120,256,525,613,613,False,stop,False,True,1,No,Christopher McCulloch,0.0,0.0,0.187
+5ab90d2755429916710eb0f0,test,fixed_k,10,qwen,1,5120,256,1104,1206,1206,False,stop,False,True,1,Unknown,Christopher McCulloch,0.0,0.0,0.199
+5ab90d2755429916710eb0f0,test,fixed_k,20,qwen,1,5120,256,2887,3026,3026,False,stop,False,True,1,Unknown,Christopher McCulloch,0.0,0.0,0.568
+5a7557d75542992d0ec05f68,test,fixed_k,0,qwen,1,5120,256,0,53,53,False,stop,False,False,,Toni Collette,Laurie Metcalf,0.0,0.0,0.268
+5a7557d75542992d0ec05f68,test,fixed_k,5,qwen,1,5120,256,725,801,801,False,stop,True,True,1 4,Laurie Metcalf,Laurie Metcalf,1.0,1.0,0.334
+5a7557d75542992d0ec05f68,test,fixed_k,10,qwen,1,5120,256,1440,1530,1530,False,stop,True,True,1 4,Laurie Metcalf,Laurie Metcalf,1.0,1.0,0.31
+5a7557d75542992d0ec05f68,test,fixed_k,20,qwen,1,5120,256,2229,2355,2355,False,stop,True,True,1 4,Laurie Metcalf,Laurie Metcalf,1.0,1.0,0.353
+5abe3dc65542993f32c2a0c4,test,fixed_k,0,qwen,1,5120,256,0,59,59,False,stop,False,False,,11.0,8,0.0,0.0,0.254
+5abe3dc65542993f32c2a0c4,test,fixed_k,5,qwen,1,5120,256,610,694,694,False,stop,True,True,1 3,11,8,0.0,0.0,0.229
+5abe3dc65542993f32c2a0c4,test,fixed_k,10,qwen,1,5120,256,1273,1373,1373,False,stop,True,True,1 3,11,8,0.0,0.0,0.246
+5abe3dc65542993f32c2a0c4,test,fixed_k,20,qwen,1,5120,256,2866,3007,3007,False,stop,True,True,1 3,KULR,8,0.0,0.0,0.537
+5ab207f65542993be8fa98b8,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Sydney,Preston,0.0,0.0,0.24
+5ab207f65542993be8fa98b8,test,fixed_k,5,qwen,1,5120,256,462,539,539,False,stop,True,True,1 2,Preston,Preston,1.0,1.0,0.204
+5ab207f65542993be8fa98b8,test,fixed_k,10,qwen,1,5120,256,915,1007,1007,False,stop,True,True,1 2,Preston,Preston,1.0,1.0,0.192
+5ab207f65542993be8fa98b8,test,fixed_k,20,qwen,1,5120,256,1908,2036,2036,False,stop,True,True,1 2,Preston,Preston,1.0,1.0,0.367
+5ab3c7df55429969a97a81be,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Shijiazhuang,Shijiazhuang,1.0,1.0,0.244
+5ab3c7df55429969a97a81be,test,fixed_k,5,qwen,1,5120,256,850,928,928,False,stop,True,True,1 2,Shijiazhuang,Shijiazhuang,1.0,1.0,0.347
+5ab3c7df55429969a97a81be,test,fixed_k,10,qwen,1,5120,256,1760,1853,1853,False,stop,True,True,1 2,Shijiazhuang,Shijiazhuang,1.0,1.0,0.378
+5ab3c7df55429969a97a81be,test,fixed_k,20,qwen,1,5120,256,3629,3761,3761,False,stop,True,True,1 2,Shijiazhuang,Shijiazhuang,1.0,1.0,0.682
+5a7e37095542995ed0d166d5,test,fixed_k,0,qwen,1,5120,256,0,54,54,False,stop,False,False,,Sinclair Hill,Sinclair Hill,1.0,1.0,0.327
+5a7e37095542995ed0d166d5,test,fixed_k,5,qwen,1,5120,256,485,561,561,False,stop,True,True,1 2,Sinclair Hill,Sinclair Hill,1.0,1.0,0.202
+5a7e37095542995ed0d166d5,test,fixed_k,10,qwen,1,5120,256,1153,1242,1242,False,stop,True,True,1 2,Robert Z. Leonard,Sinclair Hill,0.0,0.0,0.264
+5a7e37095542995ed0d166d5,test,fixed_k,20,qwen,1,5120,256,2032,2156,2156,False,stop,True,True,1 2,Sinclair Hill,Sinclair Hill,1.0,1.0,0.343
+5a7aa0a55542990198eaf165,test,fixed_k,0,qwen,1,5120,256,0,56,56,False,stop,False,False,,Sathish Kalathil,Jacques Feyder,0.0,0.0,0.264
+5a7aa0a55542990198eaf165,test,fixed_k,5,qwen,1,5120,256,510,589,589,False,stop,True,True,1 3,Jacques Feyder,Jacques Feyder,1.0,1.0,0.231
+5a7aa0a55542990198eaf165,test,fixed_k,10,qwen,1,5120,256,955,1048,1048,False,stop,True,True,1 3,Jacques Feyder,Jacques Feyder,1.0,1.0,0.213
+5a7aa0a55542990198eaf165,test,fixed_k,20,qwen,1,5120,256,2341,2471,2471,False,stop,True,True,1 3,Jacques Feyder,Jacques Feyder,1.0,1.0,0.486
+5abe765a55429976d4830b1f,test,fixed_k,0,qwen,1,5120,256,0,61,61,False,stop,False,False,,Amélie Mauresmo,Amélie Simone Mauresmo,0.0,0.8,0.282
+5abe765a55429976d4830b1f,test,fixed_k,5,qwen,1,5120,256,521,607,607,False,stop,True,True,1 5,No,Amélie Simone Mauresmo,0.0,0.0,0.192
+5abe765a55429976d4830b1f,test,fixed_k,10,qwen,1,5120,256,1101,1201,1201,False,stop,True,True,1 5,No,Amélie Simone Mauresmo,0.0,0.0,0.195
+5abe765a55429976d4830b1f,test,fixed_k,20,qwen,1,5120,256,2412,2548,2548,False,stop,True,True,1 5,No,Amélie Simone Mauresmo,0.0,0.0,0.421
+5a8810485542997e5c09a590,test,fixed_k,0,qwen,1,5120,256,0,60,60,False,stop,False,False,,23 million,1.6 million passengers,0.0,0.4,0.239
+5a8810485542997e5c09a590,test,fixed_k,5,qwen,1,5120,256,781,863,863,False,stop,False,True,2,"140,077",1.6 million passengers,0.0,0.0,0.343
+5a8810485542997e5c09a590,test,fixed_k,10,qwen,1,5120,256,1596,1691,1691,False,stop,False,True,2,"140,077",1.6 million passengers,0.0,0.0,0.356
+5a8810485542997e5c09a590,test,fixed_k,20,qwen,1,5120,256,3239,3366,3366,False,stop,False,True,2,"140,077",1.6 million passengers,0.0,0.0,0.627
+5a7f1d3c5542993067513639,test,fixed_k,0,qwen,1,5120,256,0,62,62,False,stop,False,False,,Saudi Aramco,Mercuria Energy Group Ltd,0.0,0.0,0.317
+5a7f1d3c5542993067513639,test,fixed_k,5,qwen,1,5120,256,622,707,707,False,stop,False,True,1,Mercuria Energy Group Ltd,Mercuria Energy Group Ltd,1.0,1.0,0.294
+5a7f1d3c5542993067513639,test,fixed_k,10,qwen,1,5120,256,1200,1300,1300,False,stop,False,True,1,No answer. None of the passages mention a European-based oil giant buying J.P. Morgan's commodities trading arm in 2014.,Mercuria Energy Group Ltd,0.0,0.0,0.591
+5a7f1d3c5542993067513639,test,fixed_k,20,qwen,1,5120,256,2392,2527,2527,False,stop,True,True,1 11,Mercuria,Mercuria Energy Group Ltd,0.0,0.4,0.428
+5ab2659e554299340b5254b2,test,fixed_k,0,qwen,1,5120,256,0,73,73,False,stop,False,False,,Sassanid Empire,the Parthian Empire,0.0,0.5,0.265
+5ab2659e554299340b5254b2,test,fixed_k,5,qwen,1,5120,256,596,692,692,False,stop,False,True,1,Sasanian Empire,the Parthian Empire,0.0,0.5,0.264
+5ab2659e554299340b5254b2,test,fixed_k,10,qwen,1,5120,256,1532,1642,1642,False,stop,False,True,1,Sasanian Empire,the Parthian Empire,0.0,0.5,0.37
+5ab2659e554299340b5254b2,test,fixed_k,20,qwen,1,5120,256,3366,3513,3513,False,stop,True,True,1 12,Parthian Empire,the Parthian Empire,1.0,1.0,0.644
+5a7b1023554299042af8f6c2,test,fixed_k,0,qwen,1,5120,256,0,64,64,False,stop,False,False,,The Many Adventures of Winnie the Pooh,Ride a Wild Pony,0.0,0.0,0.363
+5a7b1023554299042af8f6c2,test,fixed_k,5,qwen,1,5120,256,714,802,802,False,stop,True,True,1 2,Ride a Wild Pony,Ride a Wild Pony,1.0,1.0,0.336
+5a7b1023554299042af8f6c2,test,fixed_k,10,qwen,1,5120,256,1558,1663,1663,False,stop,True,True,1 2,The Many Adventures of Winnie the Pooh,Ride a Wild Pony,0.0,0.0,0.385
+5a7b1023554299042af8f6c2,test,fixed_k,20,qwen,1,5120,256,3054,3195,3195,False,stop,True,True,1 2,The Many Adventures of Winnie the Pooh,Ride a Wild Pony,0.0,0.0,0.61
+5a777ca855429949eeb29e6a,test,fixed_k,0,qwen,1,5120,256,0,57,57,False,stop,False,False,,Walt Disney Company,Walt Disney,0.0,0.8,0.327
+5a777ca855429949eeb29e6a,test,fixed_k,5,qwen,1,5120,256,735,817,817,False,stop,True,True,2 4,Walt Disney Studios,Walt Disney,0.0,0.8,0.303
+5a777ca855429949eeb29e6a,test,fixed_k,10,qwen,1,5120,256,1267,1364,1364,False,stop,True,True,2 4,No,Walt Disney,0.0,0.0,0.215
+5a777ca855429949eeb29e6a,test,fixed_k,20,qwen,1,5120,256,2384,2519,2519,False,stop,True,True,2 4,no,Walt Disney,0.0,0.0,0.369

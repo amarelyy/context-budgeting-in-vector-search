@@ -30,6 +30,7 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 09 | 2026-11-08 | 2.3 Step 4 | [Truncation guard test](09_truncation_guard.md) | done |
 | 10 | 2026-11-08 | 2.3 Step 5 | [Choosing num_ctx](10_num_ctx.md) | done |
 | 11 | 2026-11-08 | 2.4 | [Fixed-k baseline with the LLM](11_llm_baseline_test.md) | done (main setting) |
+| 12 | 2026-11-08 | 2.4 | [LLM baseline, Qwen's values, 3 seeds](12_llm_baseline_qwen_seeds.md) | done (secondary setting) |
 
 ## Biggest lessons so far
 
@@ -38,4 +39,5 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 3. **Three signals are nearly the same signal.** `var_local`, `top1_dist` and `entropy` are correlated at about 0.9 (run 08).
 4. **The second gold passage is the hard part.** At least one gold is found for ~95% of queries at k = 5, but both gold only for ~56% (run 03).
 5. **Ollama did not silently truncate.** A too-long prompt gives an HTTP 400 error on Ollama 0.40.15 (run 09).
-6. **More context barely improves answers.** k = 5 → 20 costs 4.4× the tokens for +0.028 F1 (run 11).
+6. **More context barely improves answers.** k = 5 → 20 costs 4.4× the tokens for +0.028 F1 (run 11), and that gain is about the size of seed-to-seed noise (±0.02, run 12).
+7. **LLM errors are stable.** Only 2-5 of 75 queries flip between right and wrong across 4 runs (run 12).

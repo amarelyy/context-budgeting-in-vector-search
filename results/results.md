@@ -13,6 +13,20 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Fixed-k baseline with LLM, secondary setting (Qwen's values, 3 seeds, test split)
+- Config: same as the main-setting entry below, but temperature 0.7, top_p 0.8, top_k 20, min_p 0, seeds 1/2/3. CSVs: `results/llm_baseline_test_qwen_seed{1,2,3}.csv`. Details: `results/runs/12_llm_baseline_qwen_seeds.md`. For error analysis only, not headline numbers.
+- Numbers (mean ± std over 3 seeds):
+
+| k | EM | answer_f1 | F1 range |
+|---|---|---|---|
+| 0 | 0.142 ± 0.008 | 0.216 ± 0.010 | 0.209-0.227 |
+| 5 | 0.400 ± 0.000 | 0.520 ± 0.002 | 0.518-0.522 |
+| 10 | 0.413 ± 0.013 | 0.522 ± 0.023 | 0.496-0.538 |
+| 20 | 0.427 ± 0.013 | 0.542 ± 0.012 | 0.529-0.551 |
+
+  Per query (main + 3 seeds): at k = 20, 24 always wrong, 46 always right, 5 flip.
+- Why it changed: only the sampling setting changed. The main-setting F1 lies inside the seed range at every k. The k = 5 → 20 F1 gain (~+0.02) is about the size of seed noise.
+
 ### 2026-11-08: Fixed-k baseline with LLM (task 2.4, test split, main setting)
 - Config: test split (75 queries), k = 0/5/10/20, qwen3:4b-instruct-2507-q4_K_M (Ollama 0.40.15), temperature 0, seed 42, num_ctx 5120, num_predict 256, prompt `src/prompt.py`, EM/F1 with HotpotQA normalization. Per-query CSV: `results/llm_baseline_test_main_seed42.csv`. Details: `results/runs/11_llm_baseline_test.md`.
 - Numbers:
