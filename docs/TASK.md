@@ -26,10 +26,10 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **1.1** `data_loader.py`: load a small HotpotQA subset with gold supporting facts (start with a few hundred queries, a starting value). Print one example to check.
 - [x] **1.2** Make the fit / calibration / test splits with a fixed seed. Save query IDs to `data/processed/`. (Split ratio is a starting value to decide.)
 - [x] **1.3** `chunking.py`: build chunks from the passages and compute `token_cost`. Record the tokenizer in the Decisions Log.
-- [ ] **1.4** Embed the chunks and L2-normalize. Record the embedding model in the Decisions Log. Save to `data/processed/`.
-- [ ] **1.5** `index.py`: build the FAISS HNSW index and write a `search(query, top_m)` that returns chunk IDs and distances. Record the HNSW parameters.
-- [ ] **1.6** Sanity check: run a few queries by hand, confirm results look sensible. Record the distance type (L2 or inner product).
-- [ ] **1.7** Check index recall against exact search on a small sample (see Risk 5 in `CONTEXT.md`).
+- [x] **1.4** Embed the chunks and L2-normalize. Record the embedding model in the Decisions Log. Save to `data/processed/`.
+- [x] **1.5** `index.py`: build the FAISS HNSW index and write a `search(query, top_m)` that returns chunk IDs and distances. Record the HNSW parameters.
+- [x] **1.6** Sanity check: run a few queries by hand, confirm results look sensible. Record the distance type (L2 or inner product).
+- [x] **1.7** Check index recall against exact search on a small sample (see Risk 5 in `CONTEXT.md`).
 
 ## Phase 2: Fixed-k baseline (report this first)
 - [ ] **2.1** `baseline.py`: retrieve with k = 5, 10, 20 for the test queries.
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 1.4-1.7 | Embedded 4956 chunks with all-MiniLM-L6-v2 (dim 384, all norms 1.0), saved `chunk_embeddings.npy`. Built HNSW (M 32, efC 200, efS 100), saved `hnsw.index`. Sanity check on 3 fit queries: both gold at ranks 1-2 each time. Fit split: both gold in top 5/10/20 = 0.520/0.683/0.763. HNSW vs exact recall@20 on 350 fit queries = 0.9994 (min 0.95), top-1 identical 100%. 188 chunks are longer than the model's 256-token limit and are truncated. Checks in `notebooks/check_index.py` (fit queries only). |
 | 2026-11-08 | 1.1-1.3 | Downloaded HotpotQA (distractor, validation) via `datasets`. Sampled 500 queries (seed 42) to `data/raw/hotpot_subset.jsonl`. Splits 350/75/75 saved to `data/processed/splits.json`. Built 4956 chunks (one paragraph = one chunk, deduplicated by title+text) with `token_cost` (median 107, mean 119.7, max 1846; 593,478 tokens total). Every query has exactly 2 gold chunks. Saved `chunks.jsonl` and `gold_chunk_ids.json`. |
 | 2026-11-08 | 0.5-0.7 | Created `.venv` (Python 3.11.9), installed the 7 proposed packages (all import OK), pinned versions in `requirements.txt`. Wrote README skeleton and `results/results.md`. Phase 0 done pending push. |
 | 2026-11-08 | 0.1-0.3 | Repo cloned, folder structure created and pushed. Project files written. |
@@ -99,12 +100,13 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Decisions log
 | Date | Decision | Value chosen | Why |
 |---|---|---|---|
-| | Embedding model | TBD | |
+| 2026-11-08 | Embedding model | `sentence-transformers/all-MiniLM-L6-v2`, dim 384, L2-normalized (starting value) | Small, fast on CPU, same tokenizer as `token_cost`. Max 256 tokens: 188 of 4956 chunks are truncated. |
+| 2026-11-08 | Distance type | L2 distance on unit vectors = sqrt of FAISS squared L2, range [0, 2], smaller = closer | `margin_mc` and `var_local` use these distances. Note L2^2 = 2 - 2*cos. |
 | 2026-11-08 | Tokenizer for `token_cost` | `sentence-transformers/all-MiniLM-L6-v2` tokenizer (starting value) | Already installed, no new dependency. It is not an LLM tokenizer, so `token_cost` is a proxy for real LLM cost. Revisit if an LLM is chosen (2.3). |
 | 2026-11-08 | Subset size | 500 queries, seed 42 (starting value) | Small enough to run fast on CPU. |
 | 2026-11-08 | Chunk definition | 1 paragraph = 1 chunk, one shared corpus for all queries | Simplest. HotpotQA gold is given per paragraph. Long paragraphs (max 1846 tokens) will be truncated by the embedding model in 1.4. |
 | | LLM for `answer_f1` (or none) | TBD | |
-| | HNSW parameters (M, efConstruction, efSearch) | TBD | |
+| 2026-11-08 | HNSW parameters (M, efConstruction, efSearch) | 32 / 200 / 100 (starting values) | Common defaults. Recall vs exact = 0.9994 on fit, so no tuning needed for now. |
 | | top_m candidates per query | TBD | |
 | 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
 | | alpha, number of bins | TBD (starting: alpha 0.1) | |
