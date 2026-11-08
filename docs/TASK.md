@@ -120,7 +120,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 | | Multi-hop gold handling | TBD (baseline reports both "both gold" and "any gold" for now) | |
 
 ## Reminders for Princess (remind every session until done)
-- [~] **Update README for the testing method** (draft written 2026-11-08, not committed; finalize after the LLM runs and the Qwen3 tokenizer switch): LLM (Qwen3-4B-Instruct-2507 via Ollama, "chosen for speed and fit"), the two sampling settings (temperature 0 main, Qwen's values for error analysis), `recall_at_budget` primary / `answer_f1` secondary, the per-query CSV logs in `results/`, the oracle upper bound (fit only). Do it after the LLM pipeline runs (after task 2.3 code).
+- [~] **Update README for the testing method** (draft updated 2026-11-08 to the so-far state: progress table, signals, LLM checks; not committed. Still to finalize: prompt template, num_ctx, truncation guard, Qwen3 tokenizer numbers, LLM results): LLM (Qwen3-4B-Instruct-2507 via Ollama, "chosen for speed and fit"), the two sampling settings (temperature 0 main, Qwen's values for error analysis), `recall_at_budget` primary / `answer_f1` secondary, the per-query CSV logs in `results/`, the oracle upper bound (fit only). Do it after the LLM pipeline runs (after task 2.3 code).
 - [ ] Commit and push the pending changes.
 
 ## Open questions for rr
