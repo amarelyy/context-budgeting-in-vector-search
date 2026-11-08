@@ -44,9 +44,9 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 - [x] **3.4** Plot the signal distributions (histograms) and check for anything strange.
 
 ## Phase 4: Labels
-- [ ] **4.1** `labels.py`: compute `gold_pos_tokens`. Decide how to handle multi-hop questions (two gold passages) and record it.
-- [ ] **4.2** Decide how to handle queries where gold is not found in the top_m. Record it.
-- [ ] **4.3** Save labels for all splits.
+- [x] **4.1** `labels.py`: compute `gold_pos_tokens`. Decide how to handle multi-hop questions (two gold passages) and record it.
+- [x] **4.2** Decide how to handle queries where gold is not found in the top_m. Record it.
+- [x] **4.3** Save labels for all splits.
 
 ## Phase 5: Score model
 - [ ] **5.1** `score_model.py`: fit logistic regression on the **fit** split. Target and threshold position are decided and recorded.
@@ -87,6 +87,7 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 ## Progress log (newest first)
 | Date | Task | What happened |
 |---|---|---|
+| 2026-11-08 | 4.1-4.3 | `src/labels.py` saves `data/processed/labels.csv` (500 rows). Both-gold rule. Fit: 267 of 350 coverable (0.763), gold_pos_tokens mean 591.5 / median 349 / p90 1312.8, gold_pos_rank median 3. Calibration: 57 of 75 coverable (0.760), mean 579.5 / median 366 / p90 1401.4. Matches the fit oracle (run 04) exactly. Test labels saved, not summarized. Not committed. |
 | 2026-11-08 | 2.4 secondary | Qwen's values, seeds 1/2/3 on test: F1 k=0/5/10/20 = 0.216/0.520/0.522/0.542 (std up to 0.023). Main-setting F1 inside the seed range. Errors stable: at k=20, 24 always wrong (13 with both gold fed), 46 always right, 5 flip. ~105 s per seed after the 127.0.0.1 fix. README and run note 12 updated. Not committed. |
 | 2026-11-08 | 2.3 (done), 2.4 | 2.3: Qwen3 tokenizer (same counts as Qwen2.5), prompt template `src/prompt.py`, truncation guard (our count = Ollama's; Ollama 0.40.15 gives HTTP 400 on too-long prompts, no silent truncation), num_ctx 5120 from data. 2.4: LLM baseline on test, main setting: F1 k=0/5/10/20 = 0.217/0.518/0.537/0.546, EM 0.160/0.400/0.413/0.440, 0 truncated. Found and fixed: `localhost` added ~2.2 s per call on Windows, now `127.0.0.1` (answers unaffected). Secondary setting (Qwen's values) not run yet: number of seeds TBD. Run notes in `results/runs/`. Not committed. |
 | 2026-11-08 | 3.3-3.4 | Signals for all 500 queries saved to `data/processed/signals.csv` (no missing values); top-20 ids/dists for all splits in `retrieval_top20.json`. Histograms (fit + calibration only, test not looked at) in `results/plots/signals_hist.png` and `margin_multihop_fit.png`. Findings: (1) fit and calibration distributions match closely (e.g. margin_mc mean 0.121 vs 0.124), good for conformal. (2) var_local, top1_dist and entropy are strongly correlated on fit (Spearman |0.88-0.91|), so they carry mostly the same information: watch for collinearity in 5.1 and expect small changes in the 9.1 ablation. (3) elbow_idx is 1 for over half the queries (median 1, max 18), so it has little spread. (4) entropy with tau 0.1 spreads 0.13-0.99, not saturated, so tau 0.1 is kept. (5) var_local is ~0.006 (median), far below the proposal's theta_var 0.05, so the proposal thresholds would not transfer (conformal replaces them anyway). (6) Multi-hop check on fit: queries with both gold at ranks 1-2 (n=95) have a LOWER margin_mc (median 0.076) than the others (n=255, median 0.101). This confirms the 3.1 observation: for 2-hop, a small margin can mean good retrieval. (7) One fit query has margin_mc = 0: two "Colomac Mine" chunks, same length, almost identical text (only one such pair in the whole corpus), so dedup (9.4) will likely have little effect on HotpotQA. Not committed. |
@@ -124,12 +125,14 @@ Do tasks **in order**. Do not skip a phase unless rr says so. A task marked with
 | 2026-11-08 | Signal definitions | `var_local` = population variance (1/m) of the top_m distances. `elbow_idx` = number of chunks before the biggest jump between neighbouring distances (1-based). `entropy` = entropy of softmax(-d / tau) divided by log(m), so it is in [0, 1]; tau = 0.1 (starting value) | tau = 1 would make the softmax almost flat (distances only span ~0.4-1.1), so entropy would be ~1 for every query. Check the histogram in 3.4. |
 | 2026-11-08 | Split ratio (fit / calibration / test) | 70 / 15 / 15 = 350 / 75 / 75 queries (starting value) | Calibration and test are small, so `ece` and `coverage` will be noisy (Risk 4). Report the counts. |
 | | alpha, number of bins | TBD (starting: alpha 0.1) | |
-| | Multi-hop gold handling | TBD (baseline reports both "both gold" and "any gold" for now) | |
+| 2026-11-08 | Multi-hop gold handling (4.1) | "Covered" = **both** gold chunks inside the fed set. `gold_pos_tokens` = tokens up to and including the last gold chunk; `gold_pos_rank` = its rank. "First gold" tokens kept as an extra column for analysis only. | Princess's choice. Run 11: F1 ≈ 0.63-0.69 with both gold fed vs ≈ 0.26-0.31 without, so both are needed for a correct answer. |
+| 2026-11-08 | Gold not in top_m (4.2) | `gold_in_pool = False`, `gold_pos_tokens` = empty (NaN, "infinite"). Queries are **kept**, never dropped. | Dropping them would hide failures. 24% of fit / calibration queries are in this group (fit 83 of 350: 81 with 1 gold, 2 with 0 gold). **Open for Phase 6:** with alpha = 0.1, 90% unconditional coverage is impossible (ceiling ≈ 76%). See the open question below. |
 
 ## Reminders for Princess (remind every session until done)
 - [~] **Update README for the testing method** (updated 2026-11-08 through Phase 3 + task 2.4: key findings, LLM table, baseline with EM/F1, reproduce list; not committed. secondary-setting results added; keep it updated each phase): LLM (Qwen3-4B-Instruct-2507 via Ollama, "chosen for speed and fit"), the two sampling settings (temperature 0 main, Qwen's values for error analysis), `recall_at_budget` primary / `answer_f1` secondary, the per-query CSV logs in `results/`, the oracle upper bound (fit only). Do it after the LLM pipeline runs (after task 2.3 code).
 - [ ] Commit and push the pending changes.
 
 ## Open questions for rr
+- **(Phase 6) Coverage target when 24% of queries can never be covered.** Options: (A) conditional coverage: calibrate `q_hat` on coverable queries only, guarantee "if both gold are in the top 20, they are inside the budget with probability ≥ 1 − alpha", and also report unconditional coverage next to the 76% ceiling; (B) unconditional coverage with a larger alpha (≥ 0.25); (C) keep uncoverable queries as "infinite", so `q_hat` becomes the full k = 20 pool in bins with many of them. Claude's suggestion: A.
 - Which BEIR subset to use as the second dataset?
 - Is an LLM available for answer quality, or is the project retrieval-only at first?

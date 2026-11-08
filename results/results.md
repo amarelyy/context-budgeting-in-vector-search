@@ -13,6 +13,11 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Labels (Phase 4, fit + calibration summary)
+- Config: both-gold rule, top_m 20, Qwen3 tokenizer. Uncoverable queries kept with gold_pos_tokens = NaN. File: `data/processed/labels.csv`. Details: `results/runs/13_labels.md`.
+- Numbers: fit 267 / 350 coverable (0.763), gold_pos_tokens mean 591.5, median 349.0, p90 1312.8. Calibration 57 / 75 coverable (0.760), mean 579.5, median 366.0, p90 1401.4. gold_pos_rank median 3 (fit), 4 (calibration).
+- Why it changed: first labels. Fit numbers match the oracle (run 04) exactly.
+
 ### 2026-11-08: Fixed-k baseline with LLM, secondary setting (Qwen's values, 3 seeds, test split)
 - Config: same as the main-setting entry below, but temperature 0.7, top_p 0.8, top_k 20, min_p 0, seeds 1/2/3. CSVs: `results/llm_baseline_test_qwen_seed{1,2,3}.csv`. Details: `results/runs/12_llm_baseline_qwen_seeds.md`. For error analysis only, not headline numbers.
 - Numbers (mean ± std over 3 seeds):

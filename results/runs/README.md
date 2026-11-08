@@ -31,6 +31,7 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 10 | 2026-11-08 | 2.3 Step 5 | [Choosing num_ctx](10_num_ctx.md) | done |
 | 11 | 2026-11-08 | 2.4 | [Fixed-k baseline with the LLM](11_llm_baseline_test.md) | done (main setting) |
 | 12 | 2026-11-08 | 2.4 | [LLM baseline, Qwen's values, 3 seeds](12_llm_baseline_qwen_seeds.md) | done (secondary setting) |
+| 13 | 2026-11-08 | 4.1-4.3 | [Labels](13_labels.md) | done |
 
 ## Biggest lessons so far
 
@@ -41,3 +42,4 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 5. **Ollama did not silently truncate.** A too-long prompt gives an HTTP 400 error on Ollama 0.40.15 (run 09).
 6. **More context barely improves answers.** k = 5 → 20 costs 4.4× the tokens for +0.028 F1 (run 11), and that gain is about the size of seed-to-seed noise (±0.02, run 12).
 7. **LLM errors are stable.** Only 2-5 of 75 queries flip between right and wrong across 4 runs (run 12).
+8. **24% of queries can never be covered** within the top 20, so 90% coverage (alpha = 0.1) is impossible unconditionally. Phase 6 must handle this (run 13).

@@ -14,7 +14,7 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 | 1 | Data, chunks, `token_cost`, embeddings, HNSW index, index checks | done |
 | 2 | Fixed-k baseline: retrieval metrics + LLM answers (EM, F1), both sampling settings | done |
 | 3 | Confidence signals: code, unit test, saved for all splits, histograms | done |
-| 4 | Labels (`gold_pos_tokens`) | not started |
+| 4 | Labels (`gold_pos_tokens`, both-gold rule) | done |
 | 5-7 | Score model, conformal budget, token-budget retrieval | not started |
 | 8 | The four checks | not started |
 | 9-10 | Ablation, failure analysis, dedup, wrap-up | not started |
@@ -139,7 +139,7 @@ These are targets, not results.
 - The calibration and test splits are small (75 queries each), so `ece` and `coverage` will be noisy.
 - The conformal guarantee holds only when calibration and test queries come from the same distribution. Fit and calibration signal distributions look alike.
 - 188 of 4,956 chunks are longer than the embedding model's 256-token limit and are truncated when embedded.
-- 24% of fit queries never get both gold passages inside the top 20, so no budget can help them.
+- 24% of fit and calibration queries never get both gold passages inside the top 20, so no budget can help them. This also means 90% unconditional coverage (alpha = 0.1) is impossible; the ceiling is about 76%. How Phase 6 handles this is still to be decided.
 - `margin_mc` may point the wrong way on multi-hop data (see Key findings). The score model must be allowed to learn this.
 - A 4B LLM is weak at multi-hop reasoning, so `answer_f1` is a secondary metric.
 - The LLM answers some questions from memory (12 of 75 exactly right with no retrieval).
@@ -173,4 +173,5 @@ python notebooks\truncation_test.py     # truncation guard test
 python notebooks\choose_num_ctx.py      # num_ctx from the largest prompt
 python src\llm_baseline.py main         # LLM baseline, temperature 0 (test)
 python src\llm_baseline.py qwen 1 2 3   # LLM baseline, Qwen's values, 3 seeds (test)
+python src\labels.py                    # labels: gold_pos_tokens (both-gold rule)
 ```
