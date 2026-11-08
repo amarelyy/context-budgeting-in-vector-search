@@ -13,6 +13,25 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Token-budget retrieval on TEST (Phase 7)
+- Config: test split (75), pre-declared main = global conformal budget q_hat 1,649 (alpha 0.1, method A); secondary bins3 and CQR (5 signals). LLM main setting (temp 0, seed 42, num_ctx 5120). Added after the run: fixed-k with k chosen on calibration by conformal on gold_pos_rank (k = 12). Files: `results/budget_test_main_seed42.csv`, `results/fixed_k_curve_test.csv`. Details: `results/runs/20_budget_retrieval_test.md`.
+- Numbers:
+
+| method | recall_at_budget (both) | cond. coverage | total_tokens mean | saved vs k=20 | EM | answer_f1 |
+|---|---|---|---|---|---|---|
+| global conformal (main) | 0.720 | 0.931 | 1,551.2 | 41.1% | 0.400 | 0.521 |
+| bins3 | 0.733 | 0.948 | 1,561.7 | 40.7% | 0.453 | 0.548 |
+| CQR | 0.720 | 0.931 | 1,439.0 | 45.4% | 0.413 | 0.523 |
+| fixed k=12 (calibration-chosen) | 0.760 | 0.983 | 1,542.5 | 41.4% | | |
+| fixed k=11 (hindsight) | 0.720 | 0.931 | 1,412.8 | 46.4% | | |
+
+- Why it changed: first test run of the method. Coverage target met; no gain over a calibration-chosen fixed-k.
+
+### 2026-11-08: Phase 6 options 2 + 3: CQR and question-type signal (dev estimate, no test)
+- Config: method A, alpha 0.1, 425 fit+calibration queries, out-of-fold predictions, 500 re-splits (75 / 350). CQR = linear quantile regression (q 0.9, no penalty) on log tokens + one conformal correction. Question type = TF-IDF + logistic regression on fit questions. Files: `ablations/phase6_methods/`. Details: runs 18, 19.
+- Numbers: tokens fed at ~0.91-0.92 conditional coverage: global 1,399; 5 signals: bins3 1,614, CQR 1,505; 6 signals: bins3 1,608, CQR 1,556. Score AUROC (OOF, fit) 0.609 → 0.704 with the question-type signal. Question-type classifier AUROC 0.954. Best case with true types and no penalty: 1,320 vs 1,356 global (−2.7%).
+- Why it changed: tried CQR (option 2), then added the question-type signal (option 3). Neither beats the global budget at alpha 0.1.
+
 ### 2026-11-08: Conformal budget per bin (Phase 6) + dev estimate (no test)
 - Config: alpha 0.1, method A, 3 bins (edges = fit conf_score tertiles 0.3423 / 0.4191). Dev estimate: 425 fit+calibration queries, out-of-fold scores, 500 re-splits (75 / 350). Files: `data/processed/conformal.json`, `ablations/phase6_mondrian/`. Details: `results/runs/17_conformal_mondrian.md`.
 - Numbers: real calibration q_hat global 1,649; bins 2,097 / 1,731 / 950. In-sample coverage 0.965 (bins) vs 0.930 (global). Dev estimate: tokens fed global 1,399 (45.1% saved), 2 bins 1,507 (40.9%), 3 bins 1,614 (36.7%); conditional coverage 0.908 / 0.914 / 0.923. Fixed k=12: 0.929, 1,486 tokens.

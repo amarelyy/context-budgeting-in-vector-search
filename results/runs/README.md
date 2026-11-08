@@ -36,6 +36,9 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 15 | 2026-11-08 | (preview) | [Signal preview: do signals predict tokens needed?](15_signal_preview_fit.md) | done (fit only) |
 | 16 | 2026-11-08 | 5.1-5.3 | [Score model](16_score_model.md) | done (judged on fit only) |
 | 17 | 2026-11-08 | 6.1-6.3 | [Conformal budget per bin + dev estimate](17_conformal_mondrian.md) | done; **negative result** |
+| 18 | 2026-11-08 | 6 (option 2) | [CQR](18_cqr.md) | done; no gain over global |
+| 19 | 2026-11-08 | 6 (option 3) | [Question-type signal](19_question_type_signal.md) | done; strong signal, no budget gain |
+| 20 | 2026-11-08 | 7.1-7.3 | [Token-budget retrieval on test](20_budget_retrieval_test.md) | done; coverage holds, no gain over calibrated fixed-k |
 
 ## Biggest lessons so far
 
@@ -51,3 +54,6 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 10. **Warning: the signals barely predict how many tokens a query needs** (|Spearman| ≤ 0.08 on fit; best single-signal AUROC 0.58 for "easy" queries). Check 1 (8.1) may fail (run 15).
 11. **The combined score is weak but real.** CV AUROC 0.589 on fit, above the `top1_dist` rival (0.460). The model learned a negative weight on `margin_mc` by itself (run 16).
 12. **Per-bin budgets cost tokens instead of saving them** (global 1,399 → 3 bins 1,614 tokens on dev data). Each small bin pays its own finite-sample penalty, and the weak score cannot make up for it. The planned method does not beat fixed-k yet (run 17).
+13. **CQR fixes the bin problem but still loses to the global budget** (1,505 vs 1,399). A weak predictor makes per-query budgets worse than one shared budget (run 18).
+15. **On test, the conformal guarantee holds (0.931 vs 0.90) and the global budget saves 41% vs k = 20, but a fixed-k chosen on calibration by the same conformal rule (k = 12) does as well with more coverage.** The useful part is the conformal choice of size, not counting in tokens (run 20).
+14. **At 90% coverage, the hardest 10% of queries set the budget, and they are all bridge questions.** A strong question-type signal (score AUROC 0.609 → 0.704) still gives no gain; even a perfect per-type budget would save only 2.7% (run 19).

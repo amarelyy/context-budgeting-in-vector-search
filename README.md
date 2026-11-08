@@ -16,8 +16,8 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 | 3 | Confidence signals: code, unit test, saved for all splits, histograms | done |
 | 4 | Labels (`gold_pos_tokens`, both-gold rule) | done |
 | 5 | Score model (`conf_score`, logistic regression) | done (judged on fit only) |
-| 6 | Conformal budget per `conf_score` bin (Mondrian) | done; dev estimate shows no gain yet (see finding 8) |
-| 7 | Token-budget retrieval on test | not started (paused for a decision) |
+| 6 | Conformal budget: per bin (Mondrian), CQR, + question-type signal | done; no per-query method beats the global budget at alpha 0.1 (findings 8-10) |
+| 7 | Token-budget retrieval on test (main: global conformal budget) | done |
 | 8 | The four checks | not started |
 | 9-10 | Ablation, failure analysis, dedup, wrap-up | not started |
 
@@ -33,6 +33,11 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 7. **The signals only weakly predict which queries are easy.** A logistic regression on all five signals reaches a cross-validated AUROC of 0.589 on fit (0.5 = coin flip), above the `top1_dist`-only rival (0.460). The model gives `margin_mc` a negative weight, which matches finding 4.
 
 8. **Negative result: per-bin budgets do not save tokens yet.** On dev data (fit + calibration, 500 re-splits, no test), the global budget feeds 1,399 tokens, 2 bins 1,507 and 3 bins 1,614, all at ~0.91-0.92 conditional coverage. Each small bin pays its own finite-sample penalty, and the weak score cannot make up for it. See [ablations/phase6_mondrian/REPORT.md](ablations/phase6_mondrian/REPORT.md).
+
+9. **CQR and a stronger signal do not fix it.** Conformalized quantile regression avoids the small-bin penalty but still feeds more tokens than the global budget (1,505 vs 1,399). A question-type signal (comparison vs bridge, detected from the question text with AUROC 0.954) raises the score's AUROC from 0.609 to 0.704, yet gives no budget gain.
+10. **Why: at 90% coverage, the hardest 10% of queries set the budget.** Those are bridge questions, and no available signal separates hard bridge questions from easy ones. Even a perfect per-type budget with unlimited calibration data would save only 2.7% over the global budget. See [ablations/phase6_methods/REPORT.md](ablations/phase6_methods/REPORT.md).
+
+11. **Test result: the conformal guarantee holds, but counting tokens adds nothing over counting chunks.** The global budget reaches 0.931 coverage (target 0.90) with 41% fewer tokens than k = 20. A fixed-k chosen on calibration with the same conformal rule (k = 12) does just as well. The useful part of the method is choosing the context size from data with a guarantee.
 
 Detailed notes for every run: [results/runs/](results/runs/README.md).
 
@@ -121,9 +126,14 @@ These are targets, not results.
 | Fixed-k, k = 5 | 0.560 | 0.947 | 595.2 | 0.400 | 0.518 |
 | Fixed-k, k = 10 | 0.693 | 0.960 | 1274.1 | 0.413 | 0.537 |
 | Fixed-k, k = 20 | 0.773 | 0.973 | 2634.0 | 0.440 | 0.546 |
-| Token-budget (conformal) | not run yet | not run yet | not run yet | not run yet | not run yet |
+| **Global conformal token budget (main, q_hat 1,649)** | **0.720** | 0.960 | **1551.2** | 0.400 | 0.521 |
+| Per-bin conformal budget (3 bins, secondary) | 0.733 | 0.960 | 1561.7 | 0.453 | 0.548 |
+| CQR budget (secondary) | 0.720 | 0.960 | 1439.0 | 0.413 | 0.523 |
+| Fixed-k, k = 12 chosen on calibration (conformal on ranks) | 0.760 | 0.960 | 1542.5 | not run | not run |
 
-0 of 300 LLM calls were truncated or cut off. Per-query log: `results/llm_baseline_test_main_seed42.csv`.
+0 LLM calls were truncated or cut off. Per-query logs: `results/llm_baseline_test_main_seed42.csv`, `results/budget_test_main_seed42.csv`.
+
+**On test, the global budget meets its coverage target** (0.931 of coverable queries vs a 0.90 target) and feeds 41% fewer tokens than k = 20, with an F1 change (−0.025) about the size of run-to-run noise. **But it does not beat fixed-k when k is chosen the same way** (k = 12 from calibration: about the same tokens, more coverage). The main method was declared before the test run; the calibration-chosen fixed-k was added afterwards as a stronger, fairer rival.
 
 **Secondary setting (Qwen's values: temperature 0.7, seeds 1, 2, 3; error analysis only):**
 
@@ -185,4 +195,9 @@ python ablations\phase6_coverage\run_ablation.py  # Phase 6 ablation (fit + cali
 python src\score_model.py               # conf_score (logistic regression, CV on fit)
 python src\conformal.py                 # q_hat global + per bin (calibration)
 python ablations\phase6_mondrian\run_mondrian.py  # dev estimate: bins vs global vs fixed-k (no test)
+python src\cqr.py                       # CQR budget (calibration); add --qtype for the 6th signal
+python src\question_type.py             # question-type signal q_comparison
+python ablations\phase6_methods\run_methods.py          # dev estimate: global vs bins vs CQR (5 signals)
+python ablations\phase6_methods\run_methods.py --qtype  # same with the question-type signal
+python src\budget_retrieval.py          # Phase 7: token-budget retrieval + LLM on test
 ```

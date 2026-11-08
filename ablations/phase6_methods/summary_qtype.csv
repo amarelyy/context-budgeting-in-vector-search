@@ -1,0 +1,4 @@
+features,method,cov_conditional,cov_conditional_p05,cov_unconditional,fed_tokens,saved_pct,saved_pct_std
+qtype,global,0.9082,0.8377,0.6931,1399.4894,45.1241,11.9796
+qtype,bins3,0.9228,0.855,0.7044,1608.1107,36.9479,10.4599
+qtype,cqr,0.9075,0.8283,0.6927,1556.0849,38.9856,12.1977
