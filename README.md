@@ -15,7 +15,8 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 | 2 | Fixed-k baseline: retrieval metrics + LLM answers (EM, F1), both sampling settings | done |
 | 3 | Confidence signals: code, unit test, saved for all splits, histograms | done |
 | 4 | Labels (`gold_pos_tokens`, both-gold rule) | done |
-| 5-7 | Score model, conformal budget, token-budget retrieval | not started |
+| 5 | Score model (`conf_score`, logistic regression) | done (judged on fit only) |
+| 6-7 | Conformal budget per `conf_score` bin, token-budget retrieval | not started (a coverage/alpha ablation is done) |
 | 8 | The four checks | not started |
 | 9-10 | Ablation, failure analysis, dedup, wrap-up | not started |
 
@@ -26,6 +27,9 @@ Standard RAG feeds a fixed number of passages (k) for every query. This project 
 3. **Retrieval drives answer quality.** With both gold passages fed, F1 is about 0.63-0.69; without both, about 0.26-0.31.
 4. **`margin_mc` behaves differently on multi-hop data.** When retrieval is perfect (both gold at ranks 1-2), the margin is *smaller* (median 0.076 vs 0.101), because two equally good passages tie at the top.
 5. **Three signals carry mostly the same information.** `var_local`, `top1_dist` and `entropy` are correlated at about 0.9.
+6. **A single global token budget is no better than fixed-k.** In a Phase 6 ablation on fit + calibration only, a conformal global budget (alpha 0.1) reached 0.908 conditional coverage with 1,399 tokens, while fixed k = 11 reached 0.920 with 1,355. Counting tokens instead of chunks does not help by itself; any gain must come from per-query budgets driven by the signals. See [ablations/phase6_coverage/REPORT.md](ablations/phase6_coverage/REPORT.md).
+
+7. **The signals only weakly predict which queries are easy.** A logistic regression on all five signals reaches a cross-validated AUROC of 0.589 on fit (0.5 = coin flip), above the `top1_dist`-only rival (0.460). The model gives `margin_mc` a negative weight, which matches finding 4.
 
 Detailed notes for every run: [results/runs/](results/runs/README.md).
 
@@ -174,4 +178,6 @@ python notebooks\choose_num_ctx.py      # num_ctx from the largest prompt
 python src\llm_baseline.py main         # LLM baseline, temperature 0 (test)
 python src\llm_baseline.py qwen 1 2 3   # LLM baseline, Qwen's values, 3 seeds (test)
 python src\labels.py                    # labels: gold_pos_tokens (both-gold rule)
+python ablations\phase6_coverage\run_ablation.py  # Phase 6 ablation (fit + calibration only)
+python src\score_model.py               # conf_score (logistic regression, CV on fit)
 ```

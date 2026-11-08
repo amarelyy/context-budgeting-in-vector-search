@@ -13,6 +13,16 @@ Every result gets one entry. Newest first. Do not log a number that was not run.
 
 ## Entries
 
+### 2026-11-08: Score model (Phase 5, fit only)
+- Config: target y = gold_pos_tokens ≤ T, T = 349 (fit median), uncoverable → 0. Logistic regression, StandardScaler, C = 1.0. 5-fold stratified CV on fit, 5 split seeds. Details: `results/runs/16_score_model.md`.
+- Numbers: CV AUROC all 5 signals 0.589 ± 0.010; rival top1_dist 0.460 ± 0.031; margin_mc alone 0.555. conf_score on fit 0.155-0.690 (median 0.381).
+- Why it changed: first score model.
+
+### 2026-11-08: Phase 6 ablation, coverage handling × alpha (fit + calibration only)
+- Config: 425 pooled fit+calibration queries, 500 random re-splits (75 cal / 350 eval, seed 0), one global split-conformal budget, no signals. Methods A (conditional) and C (infinite); alpha 0.05-0.50. Files: `ablations/phase6_coverage/`.
+- Numbers: A, alpha 0.1: conditional coverage 0.908, unconditional 0.693, 1,399 tokens, saved 45.1% vs k=20. C, alpha 0.1: q_hat = ∞ in 100% of re-splits, saved 0%. Fixed k=11 on the same queries: conditional coverage 0.920, 1,355 tokens.
+- Why it changed: first Phase 6 ablation. Shows a global token budget ≈ fixed-k, so the gain must come from per-query signals.
+
 ### 2026-11-08: Labels (Phase 4, fit + calibration summary)
 - Config: both-gold rule, top_m 20, Qwen3 tokenizer. Uncoverable queries kept with gold_pos_tokens = NaN. File: `data/processed/labels.csv`. Details: `results/runs/13_labels.md`.
 - Numbers: fit 267 / 350 coverable (0.763), gold_pos_tokens mean 591.5, median 349.0, p90 1312.8. Calibration 57 / 75 coverable (0.760), mean 579.5, median 366.0, p90 1401.4. gold_pos_rank median 3 (fit), 4 (calibration).

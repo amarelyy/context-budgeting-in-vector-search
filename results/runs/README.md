@@ -32,6 +32,9 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 | 11 | 2026-11-08 | 2.4 | [Fixed-k baseline with the LLM](11_llm_baseline_test.md) | done (main setting) |
 | 12 | 2026-11-08 | 2.4 | [LLM baseline, Qwen's values, 3 seeds](12_llm_baseline_qwen_seeds.md) | done (secondary setting) |
 | 13 | 2026-11-08 | 4.1-4.3 | [Labels](13_labels.md) | done |
+| 14 | 2026-11-08 | 6 (ablation) | [Phase 6 coverage ablation](14_phase6_coverage_ablation.md) | done (fit + calibration only) |
+| 15 | 2026-11-08 | (preview) | [Signal preview: do signals predict tokens needed?](15_signal_preview_fit.md) | done (fit only) |
+| 16 | 2026-11-08 | 5.1-5.3 | [Score model](16_score_model.md) | done (judged on fit only) |
 
 ## Biggest lessons so far
 
@@ -43,3 +46,6 @@ Rule: only real output goes here. If something was not run, it says "not run yet
 6. **More context barely improves answers.** k = 5 → 20 costs 4.4× the tokens for +0.028 F1 (run 11), and that gain is about the size of seed-to-seed noise (±0.02, run 12).
 7. **LLM errors are stable.** Only 2-5 of 75 queries flip between right and wrong across 4 runs (run 12).
 8. **24% of queries can never be covered** within the top 20, so 90% coverage (alpha = 0.1) is impossible unconditionally. Phase 6 must handle this (run 13).
+9. **A single global token budget is no better than fixed-k** at equal coverage. Any efficiency gain must come from the per-query signals (run 14).
+10. **Warning: the signals barely predict how many tokens a query needs** (|Spearman| ≤ 0.08 on fit; best single-signal AUROC 0.58 for "easy" queries). Check 1 (8.1) may fail (run 15).
+11. **The combined score is weak but real.** CV AUROC 0.589 on fit, above the `top1_dist` rival (0.460). The model learned a negative weight on `margin_mc` by itself (run 16).
